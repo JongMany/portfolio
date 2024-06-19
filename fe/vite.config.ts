@@ -1,29 +1,32 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import prerender from "@prerenderer/rollup-plugin";
 
-export default defineConfig({
-  plugins: [
-    react(),
-    prerender({
-      routes: ["/", "/counter", "/otherpage/1", "/otherpage/2", "/otherpage/3"],
-      renderer: "@prerenderer/renderer-puppeteer",
-      server: {
-        port: 3000,
-        host: "localhost",
-      },
-      rendererOptions: {
-        maxConcurrentRoutes: 1,
-        renderAfterTime: 500,
-      },
-      postProcess(renderedRoute) {
-        renderedRoute.html = renderedRoute.html
-          .replace(/http:/i, "https:")
-          .replace(
-            /(https:\/\/)?(localhost|127\.0\.0\.1):\d*/i,
-            "https://seo-optimization-test.netlify.app/"
-          );
-      },
-    }),
-  ],
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), "");
+  return {
+    plugins: [
+      react(),
+      prerender({
+        routes: ["/", "/main"],
+        renderer: "@prerenderer/renderer-puppeteer",
+        server: {
+          port: Number(env.VITE_SERVER_PORT),
+          host: env.VITE_SERVER_HOST,
+        },
+        rendererOptions: {
+          maxConcurrentRoutes: 1,
+          renderAfterTime: 500,
+        },
+        postProcess(renderedRoute) {
+          renderedRoute.html = renderedRoute.html
+            .replace(/http:/i, "https:")
+            .replace(
+              /(https:\/\/)?(localhost|127\.0\.0\.1):\d*/i,
+              env.VITE_BASE_URL
+            );
+        },
+      }),
+    ],
+  };
 });

@@ -6,10 +6,15 @@ import {
 } from "react-router-dom";
 import ErrorLayout from "../components/layout/ErrorLayout";
 import { MainLayout } from "../components/layout/MainLayout";
+import LoadingPage from "../pages/root/LoadingPage";
 
 const MainPage = lazy(() => import("../pages/main/MainPage"));
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <LoadingPage />,
+  },
   {
     path: "",
     element: <MainLayout />,
@@ -25,6 +30,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+
   // {
   //   path: "",
   //   element: <MainLayout />,

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 
 export default function MainPage() {
+  console.log(import.meta.env);
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_SERVER}/api/hello`).then((res) => {
       console.log(res);

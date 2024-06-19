@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import { DetailHelmet } from "../../components/meta/DetailHelmet";
 
 export default function MainPage() {
   console.log(import.meta.env);
@@ -12,28 +12,12 @@ export default function MainPage() {
 
   return (
     <>
-      <Helmet>
-        <title>메인화면</title>
-        <meta name="description" content="방구석 코딩쟁이" />
-        {/* Open Graph */}
-        <meta property="og:title" content="방구석 코딩쟁이" />
-        <meta property="og:description" content="방구석 코딩쟁이 포트폴리오" />
-        <meta property="og:image" content="https://via.placeholder.com/1200" />
-        <meta property="og:url" content="https://www.google.com" />
-        <meta property="og:type" content="website" />
-
-        {/* Twitter */}
-        <meta property="twitter:title" content="SEO 최적화 테스트" />
-        <meta
-          property="twitter:description"
-          content="SEO 최적화 테스트 연습입니다."
-        />
-        <meta
-          property="twitter:image"
-          content="https://via.placeholder.com/1200"
-        />
-        <meta property="twitter:card" content="summary_large_image" />
-      </Helmet>
+      <DetailHelmet
+        title="메인"
+        pageTitle="방구석 코딩쟁이의 코딩 일대기"
+        url={import.meta.env.VITE_BASE_URL + "/main"}
+        shortDesc="방구석 코딩쟁이의 포트폴리오를 소개합니다."
+      />
       <main>메인화면</main>
     </>
   );

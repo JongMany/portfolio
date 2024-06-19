@@ -1,42 +1,23 @@
 import { Helmet } from "react-helmet-async";
 type Props = {
   title: string;
-  architect: string;
   pageTitle: string;
   url: string;
-  web3D_link: string;
-  long_description: string;
-  thumbnail: string;
+  shortDesc: string;
 };
 
-export const DetailHelmet = ({
-  title,
-  architect,
-  pageTitle,
-  url,
-}: // web3D_link,
-// long_description,
-// thumbnail,
-Props) => {
+export const DetailHelmet = ({ title, pageTitle, url, shortDesc }: Props) => {
   return (
     <Helmet>
-      {title && architect && <title>{pageTitle}</title>}
+      {<title>{pageTitle}</title>}
       <meta property="og:title" content={pageTitle} />
       <meta name="twitter:title" content={pageTitle} />
       <meta property="og:url" content={url} />
       <meta property="twitter:url" content={url} />
-      {/* <meta name="description" content={short_desc} />
-      <meta property="og:description" content={short_desc} />
-      <meta name="twitter:description" content={short_desc} /> */}
-      <meta
-        name="subject"
-        content={
-          "Architecture, Web 3d contents, VR supported, " +
-          title +
-          ", " +
-          architect
-        }
-      />
+      <meta name="description" content={shortDesc} />
+      <meta property="og:description" content={shortDesc} />
+      <meta name="twitter:description" content={shortDesc} />
+      <meta name="subject" content={"방구석 코딩쟁이" + title} />
       <meta property="og:image" content={"../../og_image.webp"} />
       <meta property="og:image:alt" content="Logo of Web 3d architrip" />
       <meta name="twitter:image" content={"../../og_image.webp"} />
@@ -49,7 +30,6 @@ Props) => {
             "url": "${url}",
             "name": "${pageTitle}",
             "about": { "@id": "${url}#contents" },
-            "description": "Step into the iconic '${title}' designed by the renowned architect ${architect} ...",
             "breadcrumb": { "@id": "${url}#breadcrumb" },
             "inLanguage": "en",
             "mainContentOfPage": "${url}#contents",

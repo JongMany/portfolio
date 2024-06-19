@@ -1,7 +1,7 @@
 import { Suspense, createElement, lazy } from "react";
 import {
   createBrowserRouter,
-  Navigate,
+  // Navigate,
   RouterProvider,
 } from "react-router-dom";
 import ErrorLayout from "../components/layout/ErrorLayout";

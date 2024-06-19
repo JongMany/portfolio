@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function ErrorLayout() {
-  return <div></div>;
+  return <div>에러 발생</div>;
 }

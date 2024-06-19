@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorLayout />,
     children: [
       {
-        path: "/main",
+        path: "main",
         element: (
           <Suspense fallback={<>로딩중...</>}>
             <MainPage />

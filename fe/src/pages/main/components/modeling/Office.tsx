@@ -15,8 +15,12 @@ type Props = {
 };
 
 export function Office({ currentSectionIndex, ...props }: Props) {
-  const { nodes } = useGLTF("models/scene.gltf");
-  const texture = useTexture("textures/baked.jpg");
+  const { nodes } = useGLTF(
+    `${import.meta.env.VITE_BASE_URL}/models/scene.gltf`
+  );
+  const texture = useTexture(
+    `${import.meta.env.VITE_BASE_URL}/textures/baked.jpg`
+  );
   texture.flipY = false;
   texture.encoding = sRGBEncoding;
 

@@ -16,14 +16,18 @@ export function Avatar({ animation, ...props }: Props) {
   });
 
   const group = useRef<THREE.Group | null>(null);
-  const { nodes, materials } = useGLTF("models/646d9dcdc8a5f5bddbfac913.glb");
+  const { nodes, materials } = useGLTF(
+    `${import.meta.env.VITE_BASE_URL}/models/646d9dcdc8a5f5bddbfac913.glb`
+  );
 
-  const { animations: typingAnimation } = useFBX("animations/Typing.fbx");
+  const { animations: typingAnimation } = useFBX(
+    `${import.meta.env.VITE_BASE_URL}/animations/Typing.fbx`
+  );
   const { animations: standingAnimation } = useFBX(
-    "animations/Standing Idle.fbx"
+    `${import.meta.env.VITE_BASE_URL}/animations/Standing Idle.fbx`
   );
   const { animations: fallingAnimation } = useFBX(
-    "animations/Falling Idle.fbx"
+    `${import.meta.env.VITE_BASE_URL}/animations/Falling Idle.fbx`
   );
 
   typingAnimation[0].name = "Typing";

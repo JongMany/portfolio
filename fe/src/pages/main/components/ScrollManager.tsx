@@ -18,7 +18,7 @@ export default function ScrollManager({
   const lastScroll = useRef(0);
   const isAnimating = useRef(false);
 
-  // Tailwind 때문에
+  // Tailwind 때문에 얘가 page에 포함됨
   data.fill.classList.add("top-0");
   data.fill.classList.add("absolute");
 
@@ -38,7 +38,7 @@ export default function ScrollManager({
   // data.
 
   useFrame(() => {
-    console.log(data);
+    // console.log(data);
     if (isAnimating.current) {
       lastScroll.current = data.scroll.current;
       return;

@@ -7,6 +7,7 @@ import {
 import ErrorLayout from "../components/layout/ErrorLayout";
 import { MainLayout } from "../components/layout/MainLayout";
 import LoadingPage from "../pages/root/LoadingPage";
+// import MainPage from "../pages/main/MainPage";
 
 const MainPage = lazy(() => import("../pages/main/MainPage"));
 
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<>로딩중...</>}>
             <MainPage />
+            //{" "}
           </Suspense>
         ),
       },

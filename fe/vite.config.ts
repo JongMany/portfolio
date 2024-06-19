@@ -10,10 +10,10 @@ export default defineConfig(({ mode }) => {
       prerender({
         routes: ["/", "/main"],
         renderer: "@prerenderer/renderer-puppeteer",
-        server: {
-          port: Number(env.VITE_SERVER_PORT),
-          host: env.VITE_SERVER_HOST,
-        },
+        // server: {
+        //   port: Number(env.VITE_SERVER_PORT),
+        //   host: env.VITE_SERVER_HOST,
+        // },
         rendererOptions: {
           maxConcurrentRoutes: 1,
           renderAfterTime: 500,
@@ -23,7 +23,7 @@ export default defineConfig(({ mode }) => {
             .replace(/http:/i, "https:")
             .replace(
               /(https:\/\/)?(localhost|127\.0\.0\.1):\d*/i,
-              env.VITE_BASE_URL
+              env.VITE_BASE_URL || ""
             );
         },
       }),

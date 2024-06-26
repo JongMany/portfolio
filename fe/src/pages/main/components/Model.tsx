@@ -5,7 +5,7 @@ import {
 } from "@react-three/drei";
 import { Office } from "./modeling/Office";
 import { motion } from "framer-motion-3d";
-import { Avatar } from "./modeling/Avatar";
+import { AvatarWrapper } from "./modeling/AvatarWrapper";
 import { useEffect } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import { animate, useMotionValue } from "framer-motion";
@@ -28,7 +28,7 @@ export default function Model({ currentSectionIndex, menuOpened }: Props) {
     animate(cameraLookAtX, menuOpened ? 5 : 0, {
       ...framerMotionConfig,
     });
-  }, [menuOpened]);
+  }, [menuOpened, cameraLookAtX, cameraPositionX]);
 
   useFrame((state) => {
     state.camera.position.x = cameraPositionX.get();
@@ -96,7 +96,7 @@ export default function Model({ currentSectionIndex, menuOpened }: Props) {
           </mesh>
         </Float>
         <group scale={[2, 2, 2]} position-y={-1.5}>
-          <Avatar
+          <AvatarWrapper
             animation={currentSectionIndex === 0 ? "Falling" : "Standing"}
           />
         </group>

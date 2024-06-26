@@ -34,7 +34,7 @@ export default function ScrollManager({
         isAnimating.current = false;
       },
     });
-  }, [currentSectionIndex]);
+  }, [currentSectionIndex, data.el]);
   // data.
 
   useFrame(() => {

@@ -6,7 +6,8 @@ import {
 } from "react-router-dom";
 import ErrorLayout from "../components/layout/ErrorLayout";
 import { MainLayout } from "../components/layout/MainLayout";
-import LoadingPage from "../pages/root/LoadingPage";
+import RootPage from "../pages/root/RootPage";
+import { LazyLoad } from "../components/progress/LazyLoad";
 // import MainPage from "../pages/main/MainPage";
 
 const MainPage = lazy(() => import("../pages/main/MainPage"));
@@ -14,7 +15,7 @@ const MainPage = lazy(() => import("../pages/main/MainPage"));
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LoadingPage />,
+    element: <RootPage />,
   },
   {
     path: "",
@@ -24,9 +25,8 @@ const router = createBrowserRouter([
       {
         path: "main",
         element: (
-          <Suspense fallback={<>로딩중...</>}>
+          <Suspense fallback={<LazyLoad />}>
             <MainPage />
-            //{" "}
           </Suspense>
         ),
       },

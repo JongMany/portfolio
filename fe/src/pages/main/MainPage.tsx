@@ -1,16 +1,6 @@
-import { useEffect, useState } from "react";
 import { DetailHelmet } from "../../components/meta/DetailHelmet";
 
 export default function MainPage() {
-  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
-  const [menuOpened, setMenuOpened] = useState(false);
-
-  useEffect(() => {
-    if (menuOpened) {
-      setMenuOpened(false);
-    }
-  }, [currentSectionIndex]);
-
   return (
     <>
       <DetailHelmet

@@ -29,13 +29,21 @@
     "declaration": true,
     "typeRoots": [
       "./node_modules/@types",
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+    }
   },
   "include": [
     "src",
     "vite-env.d.ts",
     "types/Gltf.d.ts",
-    "types"
+    "types",
+    "**/*.ts",
+    "**/*.tsx",
   ],
   "references": [
     {

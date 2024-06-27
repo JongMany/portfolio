@@ -1,21 +1,18 @@
-import { StarScene } from "@/webGl/Star";
-import { useEffect, useRef } from "react";
-import * as THREE from "three";
+import Contents from "@/pages/root/components/Contents";
+import { useScrollAnimation } from "@/pages/root/hooks/useScrollAnimation";
+import { useRef } from "react";
 
 export default function Main() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const ref = useRef<any>(null);
-  useEffect(() => {
-    if (containerRef.current) {
-      ref.current = new StarScene(
-        new THREE.WebGLRenderer({
-          antialias: true,
-          // alpha: true,
-        }),
-        containerRef.current
-      );
-    }
-  }, [containerRef.current]);
+  useScrollAnimation(containerRef);
 
-  return <div ref={containerRef} className="w-full h-[100vh]"></div>;
+  return (
+    <>
+      <div
+        ref={containerRef}
+        className="w-full h-[100vh] fixed top-0 left-0"
+      ></div>
+      <Contents />
+    </>
+  );
 }

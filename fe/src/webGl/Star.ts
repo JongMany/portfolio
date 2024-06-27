@@ -1,6 +1,7 @@
 import { points } from "@/webGl/points";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { animationScript } from "../pages/root/constants/animationScript";
 
 export class StarScene {
   private renderer: THREE.WebGLRenderer;
@@ -12,6 +13,8 @@ export class StarScene {
   private models: THREE.Object3D[] = [];
   private myStar?: THREE.Object3D[] = [];
   private controls?: OrbitControls;
+  private scrollRate: number = 0;
+  private animationScript = animationScript;
 
   constructor(renderer: THREE.WebGLRenderer, domElement: HTMLElement) {
     // renderer
@@ -28,6 +31,8 @@ export class StarScene {
     }
     // scene
     this.scene = new THREE.Scene();
+    const fog = new THREE.Fog(0x000000, 1, 40);
+    this.scene.fog = fog;
 
     // camera, light, models
     this.setCamera();
@@ -38,9 +43,18 @@ export class StarScene {
     this.createMyStar();
 
     // controls
-    this.setControls();
-
+    // this.setControls();
+    // helpers
     this.setHelpers();
+
+    // ScrollRate
+    const scrollTop = window.scrollY; // 현재 스크롤 위치
+    const clientHeight = document.documentElement.clientHeight; // 화면 높이
+    const scrollHeight = document.documentElement.scrollHeight; // 전체 높이
+
+    const scrollRate = scrollTop / (scrollHeight - clientHeight);
+    this.updateScrollRate(scrollRate);
+
     // set resize events
     this.setResizeEvents();
     this.setAnimation();
@@ -51,6 +65,7 @@ export class StarScene {
     const height = this.domElement.clientHeight;
     this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
     this.camera.position.set(0, 0, 10);
+    this.camera.lookAt(0, 0, 0);
   }
 
   private setControls() {
@@ -74,7 +89,6 @@ export class StarScene {
     const particlesCount = starPoint.length * 3;
 
     const vertices = new Float32Array(particlesCount);
-    console.log(vertices);
 
     for (let i = 0; i < points.length; i++) {
       vertices[i * 3] = starPoint[i][0];
@@ -105,7 +119,6 @@ export class StarScene {
 
     const stars = new THREE.Points(particleGeometry, particleMaterial);
     this.myStar = [stars];
-    console.log(this.myStar);
     this.scene.add(stars);
   }
 
@@ -130,8 +143,10 @@ export class StarScene {
     this.renderer.setAnimationLoop(this.render.bind(this));
   }
 
-  private render(time: number) {
-    this.animate(time);
+  private render() {
+    // this.animate(time);
+    this.animate(this.scrollRate);
+    console.log(this.camera?.position, this.camera);
     this.renderer.render(this.scene, this.camera!);
   }
 
@@ -191,18 +206,7 @@ export class StarScene {
     const particleTexture = textureLoader.load(
       // "https://img.icons8.com/color/452/star.png"
       // "@/assets/star.png"
-      // "../assets/star.png",
-      "/texture/star.png",
-
-      (texture) => {
-        console.log("Texture loaded", texture);
-      },
-      (progress) => {
-        console.log("Texture loading progress", progress);
-      },
-      (error) => {
-        console.log("Texture loading error", error);
-      }
+      "/texture/star.png"
     );
 
     // Material
@@ -219,9 +223,16 @@ export class StarScene {
     this.scene.add(stars);
   }
 
-  private animate(time: number) {
-    const second = time / 1000; // Ms to second
-    console.log(second);
+  private animate(scrollRate: number) {
+    // if (!this.camera) return;
+    // const second = time / 1000; // Ms to second
+    this.animationScript.forEach((script) => {
+      const { start, end, func } = script;
+      if (scrollRate >= start && scrollRate < end) {
+        // func(this.camera!);
+        this.camera?.position.set(0, 0, 10 - 10 * scrollRate);
+      }
+    });
   }
 
   private setHelpers() {
@@ -231,5 +242,15 @@ export class StarScene {
     grid.renderOrder = 1;
     this.scene.add(axes);
     this.scene.add(grid);
+  }
+
+  updateScrollRate(scrollRate: number) {
+    this.scrollRate = scrollRate;
+  }
+
+  destroy() {
+    this.renderer.domElement.remove();
+    window.removeEventListener("resize", this.resize.bind(this));
+    this.renderer.setAnimationLoop(null);
   }
 }

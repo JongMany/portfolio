@@ -1,6 +1,6 @@
-import { StarScene } from "@/webGl/Star";
-import { useMotionValueEvent, useScroll } from "framer-motion";
-import { MutableRefObject, useEffect, useRef, useState } from "react";
+import { StarScene } from "@/webGl/StarScene";
+import { useScroll } from "framer-motion";
+import { MutableRefObject, useEffect, useRef } from "react";
 import * as THREE from "three";
 
 export const useScrollAnimation = (
@@ -9,20 +9,27 @@ export const useScrollAnimation = (
   const sceneRef = useRef<StarScene | null>(null);
   const { scrollYProgress } = useScroll({});
 
-  useMotionValueEvent(scrollYProgress, "change", (scrollRate) => {
-    if (!sceneRef.current) return;
-    sceneRef.current.updateScrollRate(scrollRate);
-  });
+  // useMotionValueEvent(scrollYProgress, "change", (scrollRate) => {
+  //   if (!sceneRef.current) return;
+  //   sceneRef.current.updateScrollRate(scrollRate);
+  // });
 
   useEffect(() => {
-    if (containerRef.current) {
+    if (containerRef.current && !sceneRef.current) {
       sceneRef.current = new StarScene(
         new THREE.WebGLRenderer({
           antialias: true,
-          // alpha: true,
         }),
         containerRef.current
       );
     }
+    const unsubscribe = scrollYProgress.on("change", (scrollRate) => {
+      if (!sceneRef.current) return;
+      sceneRef.current.updateScrollRate(scrollRate);
+    });
+
+    return () => {
+      unsubscribe();
+    };
   }, [containerRef.current]);
 };

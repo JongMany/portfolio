@@ -26,6 +26,7 @@ const makeAnimationTimeline = (
 
 const makeAnimationScript = () => {
   const animationTimeline = makeAnimationTimeline(0.1, 0.9, points.length);
+  console.log(animationTimeline);
   const animationScript = animationTimeline.map((timeline, index) => ({
     start: timeline.start,
     end: timeline.end,

@@ -17,7 +17,11 @@ export class StarScene {
   private scrollRate: number = 0;
   private animationScript = animationScript;
 
-  constructor(renderer: THREE.WebGLRenderer, domElement: HTMLElement) {
+  constructor(
+    renderer: THREE.WebGLRenderer,
+    domElement: HTMLElement,
+    debug = false
+  ) {
     // renderer
     this.renderer = renderer;
     this.renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
@@ -44,7 +48,9 @@ export class StarScene {
     this.createMyStar();
 
     // controls
-    // this.setControls();
+    if (debug) {
+      this.setControls();
+    }
     // helpers
     this.setHelpers();
 
@@ -121,7 +127,7 @@ export class StarScene {
     const stars = new THREE.Points(particleGeometry, particleMaterial);
     this.myStar = [stars];
 
-    this.scene.add(stars);
+    this.scene.add(...this.myStar);
   }
 
   private setResizeEvents() {

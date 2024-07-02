@@ -6,9 +6,19 @@ type Props = {
 
 export default function Content({
   children,
-  height = "200vh",
+  height = "100vh",
 }: PropsWithChildren<Props>) {
-  const style = `min-h-[${height}] h-[${height}] w-full p-5`;
+  const style = `w-full p-5 flex flex-col justify-center items-center text-white`;
 
-  return <section className={`${style}`}>{children}</section>;
+  return (
+    <section
+      style={{
+        height: height,
+        minHeight: height,
+      }}
+      className={`${style}`}
+    >
+      {children}
+    </section>
+  );
 }

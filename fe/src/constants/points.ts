@@ -1,4 +1,4 @@
-export const points = [
+export const points: [number, number, number][] = [
   [2, 6, -7],
   [4, 5, -5],
   [5, 3, -3],

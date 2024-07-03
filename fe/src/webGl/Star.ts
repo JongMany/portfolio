@@ -35,7 +35,7 @@ class StarMaterial extends ShaderMaterial {
   }
 }
 
-function genStar(radius) {
+function genStarField(radius: number) {
   const theta = THREE.MathUtils.randFloatSpread(360);
   const phi = THREE.MathUtils.randFloatSpread(360);
   const x = radius * Math.sin(theta) * Math.cos(phi);
@@ -48,13 +48,17 @@ export class Star {
   private material: StarMaterial;
   private fade: false;
   private model: THREE.Object3D;
-  private radius = 100;
   private factor = 4;
   private depth = 50;
   private saturation = 0;
   private speed = 1;
 
-  constructor(private count: number = 3000, private color = "white") {
+  constructor(
+    private initPosition: Float32Array = new Float32Array(0),
+    private count: number = 3000,
+    private color = "white",
+    private radius = 100
+  ) {
     this.fade = false;
     this.color = color;
     this.count = count;
@@ -66,7 +70,7 @@ export class Star {
     this.material.transparent = true;
     this.material.vertexColors = true;
 
-    const geometry = this.createGeometry();
+    const geometry = this.createGeometry(this.initPosition);
     this.model = new THREE.Points(geometry, this.material);
     this.animate = this.animate.bind(this);
     // this.model = new THREE.Points(geometry, this.material);
@@ -76,8 +80,8 @@ export class Star {
     this.material.uniforms.time.value += this.speed * 0.01;
   }
 
-  createGeometry() {
-    const positions: number[] = [];
+  createGeometry(initPosition: Float32Array) {
+    const positions: number[] = [...initPosition];
     const colors: number[] = [];
     const sizes = Array.from(
       { length: this.count },
@@ -87,14 +91,19 @@ export class Star {
     let r = this.radius + this.depth;
     const increment = this.depth / this.count;
 
+    // position이 있는 경우는 그걸 쓰고 아닌 경우만 랜덤으로 만들기
+    if (initPosition.length === 0) {
+      for (let i = 0; i < this.count; i++) {
+        r -= increment * Math.random();
+        const starPos = genStarField(r);
+        positions.push(starPos.x, starPos.y, starPos.z);
+      }
+    }
+
     for (let i = 0; i < this.count; i++) {
-      r -= increment * Math.random();
-      const starPos = genStar(r);
-      positions.push(starPos.x, starPos.y, starPos.z);
       if (this.color === "white") {
         color.setHSL(i / this.count, this.saturation, 0.9);
       } else {
-        // color.setHSL(1, 1, 1);
         color.set(this.color);
       }
       colors.push(color.r, color.g, color.b);

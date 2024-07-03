@@ -13,15 +13,16 @@ import { LazyLoad } from "../components/progress/LazyLoad";
 const MainPage = lazy(() => import("../pages/main/MainPage"));
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <RootPage />,
-  },
+  // {
+  //   path: "/",
+  //   element: <RootPage />,
+  // },
   {
     path: "",
     element: <MainLayout />,
     errorElement: <ErrorLayout />,
     children: [
+      { index: true, element: <RootPage /> },
       {
         path: "main",
         element: (

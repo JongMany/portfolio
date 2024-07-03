@@ -3,6 +3,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { animationScript } from "../pages/root/constants/animationScript";
 import { points } from "@/constants/points";
 import { Star } from "@/webGl/Star";
+import { MyStar } from "@/webGl/MyStar";
 
 export class StarScene {
   private renderer: THREE.WebGLRenderer;
@@ -16,6 +17,7 @@ export class StarScene {
   private controls?: OrbitControls;
   private scrollRate: number = 0;
   private animationScript = animationScript;
+  private stars: Star[] = [];
 
   constructor(
     renderer: THREE.WebGLRenderer,
@@ -52,7 +54,9 @@ export class StarScene {
       this.setControls();
     }
     // helpers
-    this.setHelpers();
+    if (debug) {
+      this.setHelpers();
+    }
 
     // ScrollRate
     const scrollTop = window.scrollY; // 현재 스크롤 위치
@@ -127,7 +131,13 @@ export class StarScene {
     const stars = new THREE.Points(particleGeometry, particleMaterial);
     this.myStar = [stars];
 
-    this.scene.add(...this.myStar);
+    for (const point of points) {
+      const ss = new MyStar(point);
+      this.scene.add(ss.star);
+      this.myStar.push(ss.star);
+    }
+
+    // this.scene.add(...this.myStar);
   }
 
   private setResizeEvents() {
@@ -149,79 +159,23 @@ export class StarScene {
 
   private createParticles(count: number = 5000) {
     // Geometry
-    const particleGeometry = new THREE.BufferGeometry();
+    // const particleGeometry = new THREE.BufferGeometry();
     const particlesCount = count * 3;
 
     const vertices = new Float32Array(particlesCount);
 
     for (let i = 0; i < particlesCount; i++) {
-      vertices[i] = (Math.random() - 0.5) * 100;
+      vertices[i] = (Math.random() - 0.5) * 1000;
     }
 
-    particleGeometry.setAttribute(
-      "position",
-      new THREE.BufferAttribute(vertices, 3) // 3 values for each vertex (x, y, z)
-    );
+    const starField = new Star();
+    this.scene.add(starField.star);
 
-    // Manager
-    const manager = new THREE.LoadingManager();
+    const stars = new Star(vertices, count, "blue");
 
-    manager.onStart = function (url, itemsLoaded, itemsTotal) {
-      console.log(
-        "Started loading file: ",
-        url,
-        ".\nLoaded ",
-        itemsLoaded,
-        " of ",
-        itemsTotal,
-        " files."
-      );
-    };
-    manager.onLoad = () => {
-      console.log("Loading complete!");
-    };
+    this.stars.push(stars, starField);
 
-    manager.onProgress = function (url, itemsLoaded, itemsTotal) {
-      console.log(
-        "Loading file: ",
-        url,
-        ".\nLoaded ",
-        itemsLoaded,
-        " of ",
-        itemsTotal,
-        " files."
-      );
-    };
-
-    manager.onError = function (url) {
-      console.error("There was an error loading ", url);
-    };
-
-    // Texture
-    const textureLoader = new THREE.TextureLoader(manager);
-    textureLoader.setCrossOrigin("anonymous");
-    const particleTexture = textureLoader.load(
-      // "https://img.icons8.com/color/452/star.png"
-      // "@/assets/star.png"
-      "/texture/star.png"
-    );
-
-    // Material
-    const particleMaterial = new THREE.PointsMaterial({
-      size: 0.5,
-      sizeAttenuation: true,
-      map: particleTexture,
-      // alphaTest: 0.5,
-      // transparent: true,
-    });
-
-    const stars = new THREE.Points(particleGeometry, particleMaterial);
-    const star = new Star();
-    this.scene.add(star.star);
-
-    this.models.push(stars);
-
-    this.scene.add(stars);
+    this.scene.add(stars.star);
   }
 
   private setAnimation() {
@@ -233,30 +187,26 @@ export class StarScene {
     // console.log(this.camera?.position, this.scrollRate);
     this.animate(this.scrollRate);
     this.renderer.render(this.scene, this.camera!);
+    this.stars.forEach((item) => {
+      item.animate();
+    });
     // this.renderer.setAnimationLoop(this.render.bind(this));
   }
 
   animate(scrollRate: number) {
     if (!this.camera) return;
-    // if (scrollRate > 0.2) {
-    //   this.camera.position.y = 2;
-    // } else {
-    //   this.camera.position.y = 4;
-    // }
-    // const second = time / 1000; // Ms to second
+
     this.animationScript.forEach((script) => {
       const { start, end, func } = script;
       if (scrollRate >= start && scrollRate < end) {
         func(this.camera!, scrollRate);
-        // this.camera?.position.set(0, 0, 10 - 100 * scrollRate);
       }
     });
-    this.models.forEach((model) => {
-      model.rotation.y += 0.001;
-      model.rotation.x += 0.001;
+    this.stars.forEach((item) => {
+      item.star.rotation.y += 0.001;
+      item.star.rotation.x += 0.001;
     });
-    // this.camera.position.y = scrollRate * Math.random();
-    // this.camera.position.y += Math.random() / 100;
+
     this.camera.updateProjectionMatrix();
   }
 

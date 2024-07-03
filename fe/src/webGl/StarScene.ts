@@ -12,7 +12,7 @@ export class StarScene {
   private camera?: THREE.PerspectiveCamera;
   private pointLight?: THREE.Light;
   private ambientLight?: THREE.Light;
-  private models: THREE.Object3D[] = [];
+  // private models: THREE.Object3D[] = [];
   private myStar?: THREE.Object3D[] = [];
   private controls?: OrbitControls;
   private scrollRate: number = 0;

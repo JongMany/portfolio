@@ -13,7 +13,7 @@ export class StarScene {
   private pointLight?: THREE.Light;
   private ambientLight?: THREE.Light;
   // private models: THREE.Object3D[] = [];
-  private myStar?: THREE.Object3D[] = [];
+  private myStars: MyStar[] = [];
   private controls?: OrbitControls;
   private scrollRate: number = 0;
   private animationScript = animationScript;
@@ -112,32 +112,30 @@ export class StarScene {
       new THREE.BufferAttribute(vertices, 3) // 3 values for each vertex (x, y, z)
     );
 
-    const textureLoader = new THREE.TextureLoader();
+    // const textureLoader = new THREE.TextureLoader();
     // textureLoader.setCrossOrigin("anonymous");
-    const particleTexture = textureLoader.load(
-      // "https://img.icons8.com/color/452/star.png"
-      "/texture/star.png"
-    );
+    // const particleTexture = textureLoader.load(
+    //   // "https://img.icons8.com/color/452/star.png"
+    //   "/texture/star.png"
+    // );
 
-    const particleMaterial = new THREE.PointsMaterial({
-      size: 0.7,
-      sizeAttenuation: true,
-      map: particleTexture,
-      color: 0xffff00,
-      // alphaTest: 0.5,
-      // transparent: true,
-    });
+    // const particleMaterial = new THREE.PointsMaterial({
+    //   size: 0.7,
+    //   sizeAttenuation: true,
+    //   map: particleTexture,
+    //   color: 0xffff00,
+    //   // alphaTest: 0.5,
+    //   // transparent: true,
+    // });
 
-    const stars = new THREE.Points(particleGeometry, particleMaterial);
-    this.myStar = [stars];
+    // const stars = new THREE.Points(particleGeometry, particleMaterial);
+    // this.myStars = [stars];
 
     for (const point of points) {
-      const ss = new MyStar(point);
-      this.scene.add(ss.star);
-      this.myStar.push(ss.star);
+      const myStar = new MyStar(point);
+      this.scene.add(myStar.star);
+      this.myStars.push(myStar);
     }
-
-    // this.scene.add(...this.myStar);
   }
 
   private setResizeEvents() {
@@ -190,6 +188,9 @@ export class StarScene {
     this.stars.forEach((item) => {
       item.animate();
     });
+    // this.myStars.forEach((star) => {
+    //   star.animate();
+    // });
     // this.renderer.setAnimationLoop(this.render.bind(this));
   }
 

@@ -8,8 +8,12 @@ export class MyStar {
     iMouse: { value: THREE.Vector2 };
   };
   private model: THREE.Points;
+  private material: THREE.ShaderMaterial;
 
-  constructor(private position: [number, number, number]) {
+  constructor(
+    private position: [number, number, number],
+    private speed: number = 300
+  ) {
     this.uniforms = {
       iTime: { value: 0 },
       iResolution: {
@@ -18,7 +22,7 @@ export class MyStar {
       iMouse: { value: new THREE.Vector2() },
     };
 
-    const material = new THREE.ShaderMaterial({
+    this.material = new THREE.ShaderMaterial({
       vertexShader: starVertexShader,
       fragmentShader: starFragmentShader,
       transparent: true,
@@ -36,7 +40,7 @@ export class MyStar {
     );
 
     geometry.setAttribute("size", new THREE.Float32BufferAttribute([2], 1));
-    this.model = new THREE.Points(geometry, material);
+    this.model = new THREE.Points(geometry, this.material);
 
     // this.model.position.set(position[0], position[1], position[2]);
     this.animate = this.animate.bind(this);
@@ -47,6 +51,8 @@ export class MyStar {
   }
 
   animate() {
-    this.uniforms.iTime.value += 0.01;
+    this.uniforms.iTime.value += 0.01 * this.speed;
+    // console.log(this.material.uniforms.iTime);
+    // this.material.uniforms.iTime.value += this.speed * 0.01;
   }
 }

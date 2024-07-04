@@ -1,4 +1,4 @@
-import { DetailHelmet } from "../../components/meta/DetailHelmet";
+import { DetailHelmet } from "../../components/shared/meta/DetailHelmet";
 
 export default function MainPage() {
   return (

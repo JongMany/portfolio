@@ -1,22 +1,14 @@
 import { Suspense, createElement, lazy } from "react";
-import {
-  createBrowserRouter,
-  // Navigate,
-  RouterProvider,
-} from "react-router-dom";
-import ErrorLayout from "../components/layout/ErrorLayout";
-import { MainLayout } from "../components/layout/MainLayout";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ErrorLayout from "../components/shared/layout/ErrorLayout";
+import { MainLayout } from "../components/shared/layout/MainLayout";
 import RootPage from "../pages/root/RootPage";
-import { LazyLoad } from "../components/progress/LazyLoad";
+import { LazyLoad } from "../components/shared/loadingScreen/LazyLoad";
 // import MainPage from "../pages/main/MainPage";
 
 const MainPage = lazy(() => import("../pages/main/MainPage"));
 
 const router = createBrowserRouter([
-  // {
-  //   path: "/",
-  //   element: <RootPage />,
-  // },
   {
     path: "",
     element: <MainLayout />,
@@ -33,18 +25,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-
-  // {
-  //   path: "",
-  //   element: <MainLayout />,
-  //   errorElement: <RootError />,
-  //   children: [
-  //     { index: true, element: <Navigate to="/dashboard" replace /> },
-  //     { path: "dashboard", lazy: () => import("./dashboard") },
-  //     { path: "tasks", lazy: () => import("./tasks") },
-  //     { path: "messages", lazy: () => import("./messages") },
-  //   ],
-  // },
 ]);
 
 export function Router() {

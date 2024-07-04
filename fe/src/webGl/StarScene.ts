@@ -350,7 +350,9 @@ export class StarScene {
    */
   destroy() {
     this.renderer.domElement.remove();
-    window.removeEventListener("resize", this.resize.bind(this));
+    window.removeEventListener("resize", this.onResize.bind(this));
+    window.removeEventListener("pointermove", this.onPointerMove.bind(this));
+    window.removeEventListener("click", this.onClick.bind(this));
     this.renderer.setAnimationLoop(null);
   }
 }

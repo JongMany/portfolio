@@ -43,6 +43,7 @@ const makeAnimationScript = () => {
       camera.position.x = xPos;
       camera.position.y = yPos;
       camera.position.z = zPos;
+      console.log(zPos);
 
       camera.lookAt(xPos, yPos, zPos);
     },
@@ -50,7 +51,7 @@ const makeAnimationScript = () => {
 
   animationScript.push({
     start: 0,
-    end: 0.1,
+    end: 0.05,
     func: (camera: THREE.Camera) => {
       camera.position.set(0, 0, 7);
       camera.lookAt(0, 0, 0);

@@ -27,7 +27,7 @@ export const MainLoadingScreen = ({ started, onStarted }) => {
       })
       .catch((error) => {
         setContetLoadState("error");
-        console.error(error);
+        console.error(error, loadPage);
       });
   }, []);
 
@@ -37,7 +37,7 @@ export const MainLoadingScreen = ({ started, onStarted }) => {
     contentLoadState === "error";
 
   return (
-    <div className="absolute z-50">
+    <div className={`absolute z-50 ${started ? "z-0 hidden" : ""}`}>
       <div className="loadingScreen__progress">
         <div
           className="loadingScreen__progress__value"

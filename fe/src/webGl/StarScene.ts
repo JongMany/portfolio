@@ -1,9 +1,18 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { animationScript } from "../pages/root/constants/animationScript";
+import {
+  animationScript,
+  animationTimeline,
+} from "../pages/root/constants/animationScript";
 import { points } from "@/constants/points";
 import { Star } from "@/webGl/Star";
 import { MyStar } from "@/webGl/MyStar";
+
+type Points = THREE.Points<
+  THREE.BufferGeometry<THREE.NormalBufferAttributes>,
+  THREE.Material | THREE.Material[],
+  THREE.Object3DEventMap
+>;
 
 /**
  * @class StarScene
@@ -25,6 +34,10 @@ export class StarScene {
   private backgroundStars: Star[] = [];
 
   private controls?: OrbitControls;
+
+  private raycaster: THREE.Raycaster;
+  private pointer: THREE.Vector2 = new THREE.Vector2(-1000, -1000);
+  private clickPoints: THREE.Vector2 | null = null;
 
   constructor(
     renderer: THREE.WebGLRenderer,
@@ -58,6 +71,9 @@ export class StarScene {
     this.createBackgroundStars();
     // 내 별
     this.createMyStar();
+
+    // raycaster
+    this.raycaster = new THREE.Raycaster();
 
     // controls
     if (debug) {
@@ -119,8 +135,9 @@ export class StarScene {
     // const stars = new THREE.Points(particleGeometry, particleMaterial);
     // this.myStars = [stars];
 
-    for (const point of points) {
-      const myStar = new MyStar(point);
+    for (let i = 0; i < points.length; i++) {
+      const point = points[i];
+      const myStar = new MyStar(i, point);
       this.scene.add(myStar.star);
       this.myStars.push(myStar);
     }
@@ -169,6 +186,49 @@ export class StarScene {
     // this.myStars.forEach((star) => {
     //   star.animate();
     // });
+    this.raycaster.setFromCamera(this.pointer, this.camera!);
+    const intersectItem = this.raycaster
+      .intersectObjects(this.scene.children)
+      .filter((obj) => obj.object.name.includes("myStar"))[0];
+
+    if (intersectItem) {
+      const selectIndex = Number(intersectItem.object.name.split("_")[1]);
+      for (let i = 0; i < this.myStars.length; i++) {
+        const selectStar = this.myStars[i];
+        const colors = selectStar.star.geometry.attributes.color.array;
+        if (i === selectIndex) {
+          colors[0] = 1;
+          colors[1] = 1;
+          colors[2] = 0;
+          // selectStar.star.geometry.attributes.color.needsUpdate = true;
+        } else {
+          colors[0] = 1;
+          colors[1] = 1;
+          colors[2] = 1;
+        }
+        selectStar.star.geometry.attributes.color.needsUpdate = true;
+      }
+    } else {
+      for (let i = 0; i < this.myStars.length; i++) {
+        const selectStar = this.myStars[i];
+        const colors = selectStar.star.geometry.attributes.color.array;
+        colors[0] = 1;
+        colors[1] = 1;
+        colors[2] = 1;
+        selectStar.star.geometry.attributes.color.needsUpdate = true;
+      }
+    }
+    //
+
+    // for (const object of intersects) {
+    //   const colors = (object.object as Points).geometry.attributes.color
+    //     .array as Float32Array;
+    //   colors[0] = 1;
+    //   colors[1] = 1;
+    //   colors[2] = 0;
+    //   (object.object as Points).geometry.attributes.color.needsUpdate = true;
+    // }
+
     this.renderer.render(this.scene, this.camera!);
   }
 
@@ -198,11 +258,40 @@ export class StarScene {
   }
 
   private setResizeEvents() {
-    this.resize(); // 초기 사이즈 설정을 위해 한번 호출
-    window.addEventListener("resize", this.resize.bind(this));
+    this.onResize(); // 초기 사이즈 설정을 위해 한번 호출
+    window.addEventListener("resize", this.onResize.bind(this));
+    window.addEventListener("pointermove", this.onPointerMove.bind(this));
+    window.addEventListener("click", this.onClick.bind(this));
   }
 
-  private resize() {
+  private onPointerMove(event: PointerEvent) {
+    this.pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+    this.pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+  }
+
+  private onClick(event: MouseEvent) {
+    this.clickPoints = new THREE.Vector2(
+      (event.clientX / window.innerWidth) * 2 - 1,
+      -(event.clientY / window.innerHeight) * 2 + 1
+    );
+    this.raycaster.setFromCamera(this.clickPoints, this.camera!);
+    const intersectItem = this.raycaster
+      .intersectObjects(this.scene.children)
+      .filter((obj) => obj.object.name.includes("myStar"))[0];
+    if (intersectItem) {
+      const index = Number(intersectItem.object.name.split("_")[1]);
+      // const target = points[index];
+      this.updateScrollRate(animationTimeline[index].start);
+      window.scrollTo(
+        0,
+        animationScript[index].start * document.documentElement.scrollHeight
+      );
+    }
+
+    this.clickPoints = null;
+  }
+
+  private onResize() {
     const width = this.domElement.clientWidth;
     const height = this.domElement.clientHeight;
 

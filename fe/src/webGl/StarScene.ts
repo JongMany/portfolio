@@ -8,12 +8,6 @@ import { points } from "@/constants/points";
 import { Star } from "@/webGl/Star";
 import { MyStar } from "@/webGl/MyStar";
 
-type Points = THREE.Points<
-  THREE.BufferGeometry<THREE.NormalBufferAttributes>,
-  THREE.Material | THREE.Material[],
-  THREE.Object3DEventMap
->;
-
 /**
  * @class StarScene
  * @description 스크롤에 따라 카메라의 위치를 변경하는 클래스

@@ -57,7 +57,7 @@ export class MyStar {
       new THREE.Float32BufferAttribute([2], 1)
     );
     this.model = new THREE.Points(this.geometry, this.material);
-    this.model.name = "myStar_" + index;
+    this.model.name = "myStar_" + this.index;
 
     this.animate = this.animate.bind(this);
   }

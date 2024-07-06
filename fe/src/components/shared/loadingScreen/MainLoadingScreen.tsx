@@ -1,5 +1,14 @@
-import nProgress from "nprogress";
+import LoadAnimation from "@/components/shared/loadingScreen/LoadAnimation";
+import NProgress from "nprogress";
 import { useEffect, useState } from "react";
+
+NProgress.configure({
+  showSpinner: false,
+  trickleSpeed: 100,
+  trickle: true,
+  easing: "ease",
+  speed: 100,
+});
 
 export const MainLoadingScreen = ({ started, onStarted }) => {
   const [contentLoadState, setContetLoadState] = useState<
@@ -18,12 +27,12 @@ export const MainLoadingScreen = ({ started, onStarted }) => {
   }, []);
 
   useEffect(() => {
-    nProgress.start();
+    NProgress.start();
     import("@/pages/root/RootPage")
       .then((module) => {
         setContetLoadState("finish");
         setLoadPage(module.default);
-        nProgress.done();
+        NProgress.done();
       })
       .catch((error) => {
         setContetLoadState("error");
@@ -37,23 +46,21 @@ export const MainLoadingScreen = ({ started, onStarted }) => {
     contentLoadState === "error";
 
   return (
-    <div className={`absolute z-50 ${started ? "z-0 hidden" : ""}`}>
-      <div className="loadingScreen__progress">
-        <div
-          className="loadingScreen__progress__value"
-          // style={{
-          //   width: `${progress}%`,
-          // }}
-        />
-      </div>
-      <div className="loadingScreen__board">
-        <h1 className="loadingScreen__title">Please help me!</h1>
+    //absolute z-50 h-[100vh] w-[100vw] flex justify-center items-center
+    <div
+      className={`z-50 absolute h-[100vh] w-[100vw] ${
+        started ? "z-0 hidden" : ""
+      }`}
+    >
+      <LoadAnimation />
+      <div className="absolute z-10 bottom-10 left-[50%] -translate-x-[50%]">
         <button
           // className="loadingScreen__button"
+          className={`${buttonDisabled ? "text-gray-400" : "text-white"}`}
           disabled={buttonDisabled}
           onClick={onStarted}
         >
-          Start
+          메인페이지로 이동
         </button>
       </div>
     </div>

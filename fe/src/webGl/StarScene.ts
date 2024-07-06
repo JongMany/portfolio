@@ -84,10 +84,11 @@ export class StarScene {
     const scrollHeight = document.documentElement.scrollHeight; // 전체 높이
     // 초기 스크롤 비율 계산
     const scrollRate = scrollTop / (scrollHeight - clientHeight);
+    // console.log(scrollRate);
     this.updateScrollRate(scrollRate);
 
-    // set resize events
-    this.setResizeEvents();
+    // set events
+    this.setEventListener();
     // set animation
     this.setAnimation();
   }
@@ -251,7 +252,7 @@ export class StarScene {
     this.scrollRate = scrollRate;
   }
 
-  private setResizeEvents() {
+  private setEventListener() {
     this.onResize(); // 초기 사이즈 설정을 위해 한번 호출
     window.addEventListener("resize", this.onResize.bind(this));
     window.addEventListener("pointermove", this.onPointerMove.bind(this));

@@ -7,7 +7,7 @@ export const useScrollAnimation = (
   containerRef: MutableRefObject<HTMLDivElement | null>
 ) => {
   const sceneRef = useRef<StarScene | null>(null);
-  const { scrollYProgress } = useScroll({});
+  const { scrollYProgress } = useScroll();
 
   // useMotionValueEvent(scrollYProgress, "change", (scrollRate) => {
   //   if (!sceneRef.current) return;
@@ -23,6 +23,7 @@ export const useScrollAnimation = (
         containerRef.current
       );
     }
+
     const unsubscribe = scrollYProgress.on("change", (scrollRate) => {
       if (!sceneRef.current) return;
       sceneRef.current.updateScrollRate(scrollRate);

@@ -3,7 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorLayout from "../components/shared/layout/ErrorLayout";
 import { MainLayout } from "../components/shared/layout/MainLayout";
 import RootPage from "../pages/root/RootPage";
-import { LazyLoad } from "../components/shared/loadingScreen/LazyLoad";
 // import MainPage from "../pages/main/MainPage";
 
 const MainPage = lazy(() => import("../pages/main/MainPage"));
@@ -18,7 +17,7 @@ const router = createBrowserRouter([
       {
         path: "main",
         element: (
-          <Suspense fallback={<LazyLoad />}>
+          <Suspense fallback={null}>
             <MainPage />
           </Suspense>
         ),

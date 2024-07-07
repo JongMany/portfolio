@@ -11,9 +11,9 @@ export default function LoadWrapper() {
   };
 
   return (
-    <main>
+    <>
       {start && <Main />}
       <MainLoadingScreen started={start} onStarted={showStartPage} />
-    </main>
+    </>
   );
 }

@@ -1,5 +1,7 @@
 import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
+// import react from "@vitejs/plugin-react-swc";
+import AutoImport from "unplugin-auto-import/vite";
 import prerender from "@prerenderer/rollup-plugin";
 import puppeteerRenderer from "@prerenderer/renderer-puppeteer";
 import puppeteer from "puppeteer";
@@ -16,13 +18,20 @@ export default defineConfig(({ mode }) => {
     const page = await browser.newPage();
     await page.goto("http://example.com");
     const html = await page.content();
-    console.log(html);
+    if (html) {
+      console.log("생성 완료!");
+    }
     await browser.close();
   })();
 
   return {
     plugins: [
       react(),
+      // Test Code Auto Import
+      AutoImport({
+        imports: ["vitest"],
+        dts: true,
+      }),
       prerender({
         routes: ["/", "/main"],
         renderer: puppeteerRenderer,
@@ -56,6 +65,11 @@ export default defineConfig(({ mode }) => {
           replacement: "/src",
         },
       ],
+    },
+    test: {
+      global: true,
+      environment: "jsdom",
+      setupFiles: "./vitest.setup.ts",
     },
   };
 });

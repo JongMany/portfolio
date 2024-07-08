@@ -21,7 +21,7 @@ export const useScrollAnimation = (
   // });
 
   useEffect(() => {
-    console.log(document.documentElement.scrollHeight);
+    // console.log(document.documentElement.scrollHeight);
     if (containerRef.current && !sceneRef.current) {
       sceneRef.current = new StarScene(
         new THREE.WebGLRenderer({

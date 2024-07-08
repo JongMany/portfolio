@@ -48,8 +48,9 @@ export const MainLoadingScreen = ({ started, onStarted }) => {
   return (
     //absolute z-50 h-[100vh] w-[100vw] flex justify-center items-center
     <div
-      className={`z-50 absolute h-[100vh] w-[100vw] ${
-        started ? "z-0 hidden" : ""
+      className={`z-50 absolute h-[100vh] w-[100vw] transition-all durtaion-300  ${
+        // started ? "z-0 hidden" : ""
+        started ? "opacity-0 -z-10 invisible" : ""
       }`}
     >
       <LoadAnimation />

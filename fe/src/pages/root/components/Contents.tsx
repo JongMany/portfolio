@@ -25,26 +25,14 @@ export default function Contents() {
     <>
       <main
         className="absolute top-0 left-0 w-full h-[100vh]"
-        // className="absolute flex flex-col items-center justify-center w-full text-center pointer-events-none z-99"
         style={{
           scrollSnapType: "y mandatory",
           overflowY: "auto",
         }}
         ref={ref}
       >
-        <section
-          className="flex flex-col items-center justify-center"
-          // ref={containerRef}
-          // style={{
-          //   scrollSnapType: "y mandatory",
-          //   overflowY: "auto",
-          // }}
-        >
-          <div
-            // ref={containerRef}
-            // className="w-full h-[100vh] fixed top-0 left-0"
-            className="fixed top-0 left-0 w-full overflow-y-auto -z-10"
-          >
+        <section className="flex flex-col items-center justify-center">
+          <div className="fixed top-0 left-0 w-full overflow-y-auto -z-10">
             <div className="h-[100vh]" ref={containerRef}></div>
           </div>
           <Content height="137.5vh">

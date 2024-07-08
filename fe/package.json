@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:watch": "vitest --watch"
   },
   "dependencies": {
     "@react-three/drei": "^9.107.0",
@@ -24,6 +26,9 @@
   "devDependencies": {
     "@prerenderer/renderer-puppeteer": "^1.2.4",
     "@prerenderer/rollup-plugin": "^0.3.12",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
+    "@types/node": "^20.14.10",
     "@types/nprogress": "^0.2.3",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
@@ -35,10 +40,13 @@
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "jsdom": "^24.1.0",
     "postcss": "^8.4.38",
     "puppeteer": "^22.11.2",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.4.5",
-    "vite": "^5.3.1"
+    "unplugin-auto-import": "^0.17.6",
+    "vite": "^5.3.1",
+    "vitest": "^1.6.0"
   }
 }

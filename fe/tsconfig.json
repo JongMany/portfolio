@@ -24,7 +24,8 @@
     "noFallthroughCasesInSwitch": true,
     "types": [
       "vite/client",
-      "node"
+      "node",
+      // "vitest/globals",
     ],
     "declaration": true,
     "typeRoots": [

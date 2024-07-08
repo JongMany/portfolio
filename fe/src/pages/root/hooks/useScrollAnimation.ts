@@ -30,5 +30,5 @@ export const useScrollAnimation = (
     return () => {
       unsubscribe();
     };
-  }, [containerRef.current, scrollYProgress]);
+  }, [containerRef, scrollYProgress]);
 };

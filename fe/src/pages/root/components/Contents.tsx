@@ -7,6 +7,7 @@ import { useScrollAnimation } from "@/pages/root/hooks/useScrollAnimation";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useRef } from "react";
 import starPng from "@/assets/star.png";
+import MyProfile from "@/pages/root/components/content/MyProfile";
 
 export default function Contents() {
   const ref = useRef<HTMLDivElement>(null);
@@ -38,8 +39,13 @@ export default function Contents() {
           <div className="fixed top-0 left-0 w-full overflow-y-auto -z-10">
             <div className="h-[100vh]" ref={containerRef}></div>
           </div>
+          {/* 홈 */}
           <Content height="137.5vh">
             <Home />
+          </Content>
+          {/* 프로필 */}
+          <Content>
+            <MyProfile />
           </Content>
 
           <Content>
@@ -49,6 +55,7 @@ export default function Contents() {
                 projectName="Project 1"
                 projectDescription="This is project 1"
                 techSkills={["React", "TypeScript", "Tailwind CSS"]}
+                animeDirection="LToR"
               />
             </Project>
           </Content>
@@ -60,14 +67,11 @@ export default function Contents() {
                 projectName="Project 1"
                 projectDescription="This is project 1"
                 techSkills={["React", "TypeScript", "Tailwind CSS"]}
+                animeDirection="RToL"
               />
             </Project>
           </Content>
 
-          <Content>
-            <h1 className="text-4xl font-bold text-white">My 3</h1>
-            <p className="text-lg">Welcome to my website!</p>
-          </Content>
           <Content>
             <h1 className="text-4xl font-bold text-white">My 4</h1>
             <p className="text-lg">Welcome to my website!</p>

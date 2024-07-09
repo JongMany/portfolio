@@ -12,7 +12,6 @@ export default function Home() {
     waitingTime: 1500,
   });
 
-  console.log(typingText);
   return (
     <div className="flex flex-col px-2 w-[70vw] items-center justify-center min-h-[80vh]">
       <h1 className="py-6 text-4xl">방구석 코딩쟁이, 이종민입니다.</h1>

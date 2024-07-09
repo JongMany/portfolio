@@ -1,8 +1,9 @@
-import { Suspense, createElement } from "react";
+import { Suspense, createElement, lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorLayout from "../components/shared/layout/ErrorLayout";
 import { MainLayout } from "../components/shared/layout/MainLayout";
 import RootPage from "../pages/root/page";
+const NotFoundPage = lazy(() => import("@/pages/not-found/page"));
 
 // const MainPage = lazy(() => import("../pages/main/MainPage"));
 
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "main",
         element: <Suspense fallback={null}>{/* <MainPage /> */}</Suspense>,
+      },
+      {
+        path: "*",
+        element: <Suspense fallback={null}>{<NotFoundPage />}</Suspense>,
       },
     ],
   },

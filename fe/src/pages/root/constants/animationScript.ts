@@ -47,7 +47,7 @@ const makeAnimationScript = () => {
       camera.position.x = xPos;
       camera.position.y = yPos;
       camera.position.z = zPos;
-      console.log(zPos);
+      // console.log(zPos);
 
       camera.lookAt(xPos, yPos, zPos);
     },

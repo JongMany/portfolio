@@ -146,13 +146,13 @@ export class StarScene {
     const vertices = new Float32Array(particlesCount);
 
     for (let i = 0; i < particlesCount; i++) {
-      vertices[i] = (Math.random() - 0.5) * 1000;
+      vertices[i] = (Math.random() - 0.5) * 2000;
     }
 
     const starField = new Star();
     this.scene.add(starField.star);
 
-    const stars = new Star(vertices, count, "blue");
+    const stars = new Star(vertices, count, "purple");
 
     this.backgroundStars.push(stars, starField);
 

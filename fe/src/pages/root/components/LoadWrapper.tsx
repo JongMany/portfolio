@@ -6,7 +6,6 @@ export default function LoadWrapper() {
   const [start, setStart] = useState(false);
 
   const showStartPage = () => {
-    console.log(start);
     setStart(true);
   };
 

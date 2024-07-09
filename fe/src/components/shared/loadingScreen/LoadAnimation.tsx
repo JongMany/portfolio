@@ -14,9 +14,8 @@ export default function LoadAnimation() {
           antialias: true,
         }),
         containerRef.current,
-        true
+        false
       );
-      console.log(bigbangRef.current);
     }
   }, []);
 

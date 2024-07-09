@@ -1,8 +1,12 @@
 import Content from "@/pages/root/components/Content";
+import Contact from "@/pages/root/components/content/Contact";
+import Home from "@/pages/root/components/content/Home";
+import Project from "@/pages/root/components/content/Project";
 import { useScrollAnimation } from "@/pages/root/hooks/useScrollAnimation";
 // import { useCustomScroll } from "@/pages/root/hooks/useCustomScroll";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useRef } from "react";
+import starPng from "@/assets/star.png";
 
 export default function Contents() {
   const ref = useRef<HTMLDivElement>(null);
@@ -12,7 +16,6 @@ export default function Contents() {
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    // console.log(latest);
     if (scrollRef.current) {
       scrollRef.current.innerHTML = `${latest}`;
     }
@@ -36,18 +39,29 @@ export default function Contents() {
             <div className="h-[100vh]" ref={containerRef}></div>
           </div>
           <Content height="137.5vh">
-            <h1 className="text-4xl font-bold text-white">Hello, World!</h1>
-            <p className="text-lg">Welcome to my website!</p>
+            <Home />
           </Content>
 
           <Content>
-            <h1 className="text-4xl font-bold text-white">My 1</h1>
-            <p className="text-lg">Welcome to my website!</p>
+            <Project isAlignReverse={false}>
+              <Project.ImageContainer image={starPng} />
+              <Project.Description
+                projectName="Project 1"
+                projectDescription="This is project 1"
+                techSkills={["React", "TypeScript", "Tailwind CSS"]}
+              />
+            </Project>
           </Content>
 
           <Content>
-            <h1 className="text-4xl font-bold text-white">My 2</h1>
-            <p className="text-lg">Welcome to my website!</p>
+            <Project isAlignReverse={true}>
+              <Project.ImageContainer image={starPng} />
+              <Project.Description
+                projectName="Project 1"
+                projectDescription="This is project 1"
+                techSkills={["React", "TypeScript", "Tailwind CSS"]}
+              />
+            </Project>
           </Content>
 
           <Content>
@@ -87,9 +101,10 @@ export default function Contents() {
             <p className="text-lg">Welcome to my website!</p>
           </Content>
           {/* 137.5vh */}
-          <Content height="137.5vh">
-            <h1 className="text-4xl font-bold text-white">Hello, World!</h1>
-            <p className="text-lg">Welcome to my website!</p>
+          <Content height="137.5vh" scrollSnapAlign="end">
+            <div className="flex h-[100vh] flex-col justify-center items-center">
+              <Contact />
+            </div>
           </Content>
         </section>
       </main>

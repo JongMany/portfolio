@@ -1,5 +1,5 @@
 import { useInView } from "framer-motion";
-import React, { useRef } from "react";
+import { useRef } from "react";
 
 export default function MyProfile() {
   const ref = useRef<HTMLDivElement>(null);

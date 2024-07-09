@@ -1,11 +1,10 @@
-import { Suspense, createElement, lazy } from "react";
+import { Suspense, createElement } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorLayout from "../components/shared/layout/ErrorLayout";
 import { MainLayout } from "../components/shared/layout/MainLayout";
-import RootPage from "../pages/root/RootPage";
-// import MainPage from "../pages/main/MainPage";
+import RootPage from "../pages/root/page";
 
-const MainPage = lazy(() => import("../pages/main/MainPage"));
+// const MainPage = lazy(() => import("../pages/main/MainPage"));
 
 const router = createBrowserRouter([
   {
@@ -16,11 +15,7 @@ const router = createBrowserRouter([
       { index: true, element: <RootPage /> },
       {
         path: "main",
-        element: (
-          <Suspense fallback={null}>
-            <MainPage />
-          </Suspense>
-        ),
+        element: <Suspense fallback={null}>{/* <MainPage /> */}</Suspense>,
       },
     ],
   },

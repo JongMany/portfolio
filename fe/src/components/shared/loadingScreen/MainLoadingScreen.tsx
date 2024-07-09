@@ -28,7 +28,7 @@ export const MainLoadingScreen = ({ started, onStarted }) => {
 
   useEffect(() => {
     NProgress.start();
-    import("@/pages/root/RootPage")
+    import("@/pages/root/page")
       .then((module) => {
         setContetLoadState("finish");
         setLoadPage(module.default);

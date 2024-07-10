@@ -70,11 +70,17 @@ const Description = ({
       className="flex flex-col items-start justify-center basis-[60%] backdrop-blur-sm px-4 py-2"
       ref={containerRef}
     >
-      <h1 className="mb-4 text-4xl font-semibold">{projectName}</h1>
-      <p className="mb-4 text-xl">{projectDescription}</p>
+      <h1 className="flex mb-4 text-3xl font-semibold">
+        <span className="pr-4 mr-4 border-r-2 basis-[40%]">프로젝트 명 </span>
+        <span>{projectName}</span>
+      </h1>
+      <p className="flex flex-col mb-4">
+        <span className="text-xl font-semibold">프로젝트 소개</span>
+        <span className="ml-4">{projectDescription}</span>
+      </p>
       <div className="mb-4">
-        <p className="mb-2">사용한 기술 스택</p>
-        <ul>
+        <p className="mb-2 font-semibold">사용한 기술 스택</p>
+        <ul className="flex flex-col ml-4 text-sm gap-y-1">
           {techSkills.map((skill, idx) => (
             <li
               key={skill}

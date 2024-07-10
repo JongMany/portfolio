@@ -14,13 +14,22 @@ export default function MyProfile() {
         transition: `all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s`,
       }}
     >
-      <div></div>
-      <div>
-        <h3>저는 이런 사람이에요!</h3>
+      <div className="">
+        <h3 className="text-2xl font-bold text-center">
+          저는 이런 사람이에요!
+        </h3>
         <div>
-          <h5>기술 스택</h5>
+          <h5 className="text-lg font-semibold">기술 스택</h5>
           <div>
             <h6>프로그래밍 언어</h6>
+            <p>
+              <span>JavaScript</span>
+              <span>TypeScript</span>
+              <span>Python</span>
+            </p>
+          </div>
+          <div>
+            <h6>프레임워크</h6>
             <p>
               <span>JavaScript</span>
               <span>TypeScript</span>

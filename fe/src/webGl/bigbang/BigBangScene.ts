@@ -62,7 +62,6 @@ export class BigBangScene {
   private onResize() {
     const width = document.documentElement.clientWidth;
     const height = document.documentElement.clientHeight;
-    console.log(width, height);
     if (this.camera) {
       this.camera.aspect = width / height;
       this.camera.updateProjectionMatrix();

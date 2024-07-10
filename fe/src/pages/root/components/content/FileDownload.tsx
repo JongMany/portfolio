@@ -38,6 +38,9 @@ export default function FileDownload({ fileUrl }: Props) {
       >
         {isDownloading ? "Downloading..." : "Download"}
       </button>
+      <form action={fileUrl} method="get" target="_blank">
+        <button type="submit">Download</button>
+      </form>
     </div>
   );
 }

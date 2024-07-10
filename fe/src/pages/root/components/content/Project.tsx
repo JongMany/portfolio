@@ -49,17 +49,19 @@ const ImageContainer = ({
   );
 };
 
+type DescriptionProps = {
+  projectName: string;
+  projectDescription: string;
+  techSkills: string[];
+  animeDirection: "LToR" | "RToL";
+};
 const Description = ({
   projectName,
   projectDescription,
   techSkills,
   animeDirection,
-}: {
-  projectName: string;
-  projectDescription: string;
-  techSkills: string[];
-  animeDirection: "LToR" | "RToL";
-}) => {
+  children,
+}: PropsWithChildren<DescriptionProps>) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, {});
 
@@ -94,6 +96,7 @@ const Description = ({
       </div>
       <p>
         <Link to="/project">더 자세히 보기</Link>
+        {children}
       </p>
     </div>
   );

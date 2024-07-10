@@ -1,5 +1,5 @@
 import { useInView } from "framer-motion";
-import React, { useRef } from "react";
+import { useRef } from "react";
 
 export default function MyProfile() {
   const ref = useRef<HTMLDivElement>(null);
@@ -16,7 +16,39 @@ export default function MyProfile() {
     >
       <div></div>
       <div>
-        <h1>안녕하세요</h1>
+        <h3>저는 이런 사람이에요!</h3>
+        <div>
+          <h5>기술 스택</h5>
+          <div>
+            <h6>프로그래밍 언어</h6>
+            <p>
+              <span>JavaScript</span>
+              <span>TypeScript</span>
+              <span>Python</span>
+            </p>
+          </div>
+        </div>
+        <div>
+          <h5>이력</h5>
+          <p>
+            <span>2018.03 ~ 2025.02</span>
+            <span>광운대학교</span>
+            <span>정보융합학부</span>
+          </p>
+          <p>
+            <span>2022.11 ~ 현재</span>
+            <span>IDEA Lab</span>
+            <span>개발 인턴</span>
+          </p>
+          <p>
+            <span>2024.03 ~ 2024.06</span>
+            <span>항해 플러스 프론트엔드 1기 수료</span>
+          </p>
+          <p>
+            <span>2024.07 ~ 현재</span>
+            <span>카카오테크 부트캠프 풀스택 과정 1기</span>
+          </p>
+        </div>
       </div>
     </article>
   );

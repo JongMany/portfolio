@@ -39,14 +39,14 @@ export class BigBangScene {
     this.setCamera();
     this.setLight();
 
+    // Star
+    this.createStars();
+
     // EventListener
     this.setEventListener();
 
     // Animation
     this.setAnimation();
-
-    // Star
-    this.createStars();
 
     if (debug) {
       this.setHelpers();
@@ -60,9 +60,8 @@ export class BigBangScene {
   }
 
   private onResize() {
-    const width = this.domElement.clientWidth;
-    const height = this.domElement.clientHeight;
-
+    const width = document.documentElement.clientWidth;
+    const height = document.documentElement.clientHeight;
     if (this.camera) {
       this.camera.aspect = width / height;
       this.camera.updateProjectionMatrix();

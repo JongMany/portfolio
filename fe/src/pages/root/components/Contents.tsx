@@ -8,6 +8,7 @@ import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useRef } from "react";
 import starPng from "@/assets/star.png";
 import MyProfile from "@/pages/root/components/content/MyProfile";
+import FileDownload from "@/pages/root/components/content/FileDownload";
 
 export default function Contents() {
   const ref = useRef<HTMLDivElement>(null);
@@ -68,7 +69,11 @@ export default function Contents() {
                 projectDescription="This is project 1"
                 techSkills={["React", "TypeScript", "Tailwind CSS"]}
                 animeDirection="RToL"
-              />
+              >
+                <FileDownload
+                  fileUrl={`${import.meta.env.VITE_API_SERVER}/files/eyeve.pdf`}
+                />
+              </Project.Description>
             </Project>
           </Content>
 

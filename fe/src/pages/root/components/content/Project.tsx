@@ -70,9 +70,9 @@ const Description = ({
       className="flex flex-col items-start justify-center basis-[60%] backdrop-blur-sm px-4 py-2"
       ref={containerRef}
     >
-      <h1 className="flex mb-4 text-3xl font-semibold">
-        <span className="pr-4 mr-4 border-r-2 basis-[40%]">프로젝트 명 </span>
-        <span>{projectName}</span>
+      <h1 className="flex items-center justify-center mb-4 text-3xl">
+        <span className="pr-4 mr-4 border-r-2 min-w-[40%]">프로젝트 명 </span>
+        <span className="flex-1 text-2xl">{projectName}</span>
       </h1>
       <p className="flex flex-col mb-4">
         <span className="text-xl font-semibold">프로젝트 소개</span>
@@ -92,7 +92,7 @@ const Description = ({
                     })`,
                 opacity: isInView ? 1 : 0,
                 transition: `all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) `,
-                transitionDelay: `${idx * 0.4 + 1.2}s`,
+                transitionDelay: `${idx * 0.25 + 1.2}s`,
               }}
             >
               {skill}

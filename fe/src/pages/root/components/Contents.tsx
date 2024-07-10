@@ -63,6 +63,7 @@ export default function Contents() {
                   "Ant Design",
                   "Zustand",
                   "Tanstack Query",
+                  "D3.js",
                   "...",
                 ]}
                 animeDirection="LToR"
@@ -116,7 +117,7 @@ export default function Contents() {
             </Project>
           </Content>
           <Content>
-            <Project isAlignReverse={false}>
+            <Project isAlignReverse={true}>
               <Project.ImageContainer image={cryptoProjectImg} />
               <Project.Description
                 projectName="웹 기반 스터디 인증 SNS"

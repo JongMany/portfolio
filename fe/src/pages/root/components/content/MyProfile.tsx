@@ -14,49 +14,90 @@ export default function MyProfile() {
         transition: `all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s`,
       }}
     >
-      <div className="">
-        <h3 className="text-2xl font-bold text-center">
+      <div>
+        <h3
+          className="mb-8 text-4xl font-bold text-center"
+          style={{
+            opacity: isInView ? 1 : 0,
+            transition: `all 0.4s cubic-bezier(0.17, 0.55, 0.55, 1) 1s`,
+          }}
+        >
           저는 이런 사람이에요!
         </h3>
-        <div>
-          <h5 className="text-lg font-semibold">기술 스택</h5>
-          <div>
-            <h6>프로그래밍 언어</h6>
-            <p>
+        <div
+          style={{
+            opacity: isInView ? 1 : 0,
+            transition: `all 0.4s cubic-bezier(0.17, 0.55, 0.55, 1) 1.4s`,
+          }}
+        >
+          <h5 className="mb-3 text-2xl font-semibold">기술 스택</h5>
+          <div className="mb-2 ml-4">
+            <h6 className="font-semibold">프로그래밍 언어</h6>
+            <p className="grid grid-cols-2 ml-4">
               <span>JavaScript</span>
               <span>TypeScript</span>
               <span>Python</span>
+              <span>Java</span>
             </p>
           </div>
-          <div>
-            <h6>프레임워크</h6>
-            <p>
-              <span>JavaScript</span>
-              <span>TypeScript</span>
-              <span>Python</span>
+          <div className="mb-2 ml-4 ">
+            <h6 className="font-semibold">웹 프레임워크 / 라이브러리</h6>
+            <p className="grid grid-cols-2 ml-4">
+              <span>React</span>
+              <span>Next.js</span>
+              <span>Express</span>
+              <span>Nest.js</span>
+            </p>
+          </div>
+          <div className="mb-2 ml-4 ">
+            <h6 className="font-semibold">상태 관리 라이브러리</h6>
+            <p className="grid grid-cols-2 ml-4">
+              <span>Redux</span>
+              <span>Zustand</span>
+              <span>Tanstack Query</span>
+            </p>
+          </div>
+          <div className="mb-2 ml-4 ">
+            <h6 className="font-semibold">데이터베이스</h6>
+            <p className="grid grid-cols-2 ml-4">
+              <span>MongoDB</span>
+              <span>MySQL</span>
+            </p>
+          </div>
+          <div className="mb-2 ml-4 ">
+            <h6 className="font-semibold">Studying</h6>
+            <p className="grid grid-cols-2 ml-4">
+              <span>Docker</span>
+              <span>AWS</span>
             </p>
           </div>
         </div>
-        <div>
-          <h5>이력</h5>
-          <p>
-            <span>2018.03 ~ 2025.02</span>
-            <span>광운대학교</span>
-            <span>정보융합학부</span>
-          </p>
-          <p>
-            <span>2022.11 ~ 현재</span>
-            <span>IDEA Lab</span>
-            <span>개발 인턴</span>
-          </p>
-          <p>
-            <span>2024.03 ~ 2024.06</span>
-            <span>항해 플러스 프론트엔드 1기 수료</span>
-          </p>
-          <p>
-            <span>2024.07 ~ 현재</span>
-            <span>카카오테크 부트캠프 풀스택 과정 1기</span>
-          </p>
+        <div
+          className="mt-4"
+          style={{
+            opacity: isInView ? 1 : 0,
+            transition: `all 0.4s cubic-bezier(0.17, 0.55, 0.55, 1) 1.6s`,
+          }}
+        >
+          <h5 className="mb-3 text-2xl font-semibold">이력</h5>
+          <div className="grid grid-cols-[1fr_2fr] gap-x-8">
+            <>
+              <span>2018.03 ~ 2025.02</span>
+              <span>광운대학교 정보융합학부</span>
+            </>
+            <>
+              <span>2022.11 ~ 현재</span>
+              <span>IDEA Lab 개발 인턴</span>
+            </>
+            <>
+              <span>2024.03 ~ 2024.06</span>
+              <span>항해 플러스 프론트엔드 1기 수료</span>
+            </>
+            <>
+              <span>2024.07 ~ 현재</span>
+              <span>카카오테크 부트캠프 풀스택 과정 1기</span>
+            </>
+          </div>
         </div>
       </div>
     </article>

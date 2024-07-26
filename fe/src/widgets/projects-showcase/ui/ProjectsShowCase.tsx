@@ -1,7 +1,7 @@
 import { useScrollAnimation } from "@/pages/root/hooks/useScrollAnimation";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useRef } from "react";
-import FileDownload from "@/pages/root/components/content/FileDownload";
+import FileDownload from "@/features/download-file/index";
 import MyProfile from "@/pages/root/components/content/MyProfile";
 import ContentContainer from "@/entities/projects/ui/ContentContainer";
 

@@ -2,10 +2,11 @@ import { useScrollAnimation } from "@/pages/root/hooks/useScrollAnimation";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useRef } from "react";
 import FileDownload from "@/features/download-file/index";
+import Contact from "@/entities/contact/index";
+
 import MyProfile from "@/pages/root/components/content/MyProfile";
 import ContentContainer from "@/entities/projects/ui/ContentContainer";
 
-import Contact from "@/pages/root/components/content/Contact";
 import Home from "@/pages/root/components/content/Home";
 import Project from "@/pages/root/components/content/Project";
 // IMG

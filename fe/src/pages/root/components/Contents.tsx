@@ -8,11 +8,11 @@ import Contact from "@/pages/root/components/content/Contact";
 import Home from "@/pages/root/components/content/Home";
 import Project from "@/pages/root/components/content/Project";
 // IMG
-import studyLogProjectImg from "@/assets/study-log.png";
-import readyToWorkProjectImg from "@/assets/ready_to_work.png";
-import cryptoProjectImg from "@/assets/crypto.png";
-import eyeveProjectImg from "@/assets/eyeve.png";
-import vscodeExtensionProjectImg from "@/assets/vscode-extension.png";
+import studyLogProjectImg from "@/shared/assets/study-log.png";
+import readyToWorkProjectImg from "@/shared/assets/ready_to_work.png";
+import cryptoProjectImg from "@/shared/assets/crypto.png";
+import eyeveProjectImg from "@/shared/assets/eyeve.png";
+import vscodeExtensionProjectImg from "@/shared/assets/vscode-extension.png";
 
 export default function Contents() {
   const ref = useRef<HTMLDivElement>(null);

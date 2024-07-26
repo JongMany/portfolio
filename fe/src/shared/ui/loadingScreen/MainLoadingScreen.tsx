@@ -1,4 +1,4 @@
-import LoadAnimation from "@/shared/components/loadingScreen/LoadAnimation";
+import LoadAnimation from "@/shared/ui/loadingScreen/LoadAnimation";
 import NProgress from "nprogress";
 import { useEffect, useState } from "react";
 
@@ -28,7 +28,7 @@ export const MainLoadingScreen = ({ started, onStarted }) => {
 
   useEffect(() => {
     NProgress.start();
-    import("@/pages/root/page")
+    import("@/pages/main/page")
       .then((module) => {
         setContetLoadState("finish");
         setLoadPage(module.default);

@@ -1,5 +1,5 @@
-import { DetailHelmet } from "@/shared/components/meta/DetailHelmet";
-import LoadWrapper from "./components/LoadWrapper";
+import { DetailHelmet } from "@/shared/ui/meta/DetailHelmet";
+import LoadWrapper from "@/pages/root/components/LoadWrapper";
 
 export default function RootPage() {
   return (

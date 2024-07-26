@@ -1,4 +1,4 @@
-import { lerp, scalePercent } from "@/utils/lerp";
+import { lerp, scalePercent } from "@/shared/utils/lerp";
 
 describe("lerp", () => {
   it("should interpolate between two numbers", () => {

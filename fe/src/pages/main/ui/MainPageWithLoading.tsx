@@ -1,8 +1,8 @@
-import { MainLoadingScreen } from "@/shared/ui/loadingScreen/MainLoadingScreen";
-import Main from "@/pages/root/components/Main";
+import { MainLoadingScreen } from "@/widgets/projects-showcase/index";
+import ProjectsShowCase from "@/widgets/projects-showcase/ui/ProjectsShowCase";
 import { useState } from "react";
 
-export default function LoadWrapper() {
+export default function MainPageWithLoading() {
   const [start, setStart] = useState(false);
 
   const showStartPage = () => {
@@ -11,7 +11,7 @@ export default function LoadWrapper() {
 
   return (
     <>
-      {start && <Main />}
+      {start && <ProjectsShowCase />}
       <MainLoadingScreen started={start} onStarted={showStartPage} />
     </>
   );

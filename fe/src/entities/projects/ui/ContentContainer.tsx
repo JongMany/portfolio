@@ -1,11 +1,11 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 type Props = {
   height?: string;
   scrollSnapAlign?: "start" | "center" | "end";
 };
 
-export default function Content({
+export default function ContentContainer({
   children,
   height = "100vh",
   scrollSnapAlign = "start",

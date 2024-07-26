@@ -14,7 +14,6 @@ export const MainLoadingScreen = ({ started, onStarted }) => {
   const [contentLoadState, setContetLoadState] = useState<
     "loading" | "error" | "finish"
   >("loading");
-  const [loadPage, setLoadPage] = useState<React.ReactNode>(null);
   const [minTimeFinish, setMinTimeFinish] = useState<"loading" | "finish">(
     "loading"
   );
@@ -28,16 +27,17 @@ export const MainLoadingScreen = ({ started, onStarted }) => {
 
   useEffect(() => {
     NProgress.start();
-    import("@/pages/main/page")
+    import("@/widgets/projects-showcase/ui/ProjectsShowCase.tsx")
       .then((module) => {
         setContetLoadState("finish");
-        setLoadPage(module.default);
+        console.log(module.default);
         NProgress.done();
       })
       .catch((error) => {
         setContetLoadState("error");
-        console.error(error, loadPage);
+        console.error("error", error);
       });
+    // import("./ProjectsShowCase")
   }, []);
 
   const buttonDisabled =

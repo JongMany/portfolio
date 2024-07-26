@@ -3,7 +3,8 @@ import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useRef } from "react";
 import FileDownload from "@/pages/root/components/content/FileDownload";
 import MyProfile from "@/pages/root/components/content/MyProfile";
-import Content from "@/pages/root/components/Content";
+import ContentContainer from "@/entities/projects/ui/ContentContainer";
+
 import Contact from "@/pages/root/components/content/Contact";
 import Home from "@/pages/root/components/content/Home";
 import Project from "@/pages/root/components/content/Project";
@@ -14,7 +15,7 @@ import cryptoProjectImg from "@/shared/assets/crypto.png";
 import eyeveProjectImg from "@/shared/assets/eyeve.png";
 import vscodeExtensionProjectImg from "@/shared/assets/vscode-extension.png";
 
-export default function Contents() {
+export default function ProjectsShowCase() {
   const ref = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -45,15 +46,15 @@ export default function Contents() {
             <div className="h-[100vh]" ref={containerRef}></div>
           </div>
           {/* 홈 */}
-          <Content height="137.5vh">
+          <ContentContainer height="137.5vh">
             <Home />
-          </Content>
+          </ContentContainer>
           {/* 프로필 */}
-          <Content>
+          <ContentContainer>
             <MyProfile />
-          </Content>
+          </ContentContainer>
           {/* Ready To Work Project */}
-          <Content>
+          <ContentContainer>
             <Project isAlignReverse={false}>
               <Project.ImageContainer image={readyToWorkProjectImg} />
               <Project.Description
@@ -72,9 +73,9 @@ export default function Contents() {
                 animeDirection="LToR"
               />
             </Project>
-          </Content>
+          </ContentContainer>
 
-          <Content>
+          <ContentContainer>
             <Project isAlignReverse={true}>
               <Project.ImageContainer image={eyeveProjectImg} />
               <Project.Description
@@ -96,9 +97,9 @@ export default function Contents() {
                 />
               </Project.Description>
             </Project>
-          </Content>
+          </ContentContainer>
           {/* 암호화폐 차트 */}
-          <Content>
+          <ContentContainer>
             <Project isAlignReverse={false}>
               <Project.ImageContainer image={cryptoProjectImg} />
               <Project.Description
@@ -118,9 +119,9 @@ export default function Contents() {
                 animeDirection="RToL"
               ></Project.Description>
             </Project>
-          </Content>
+          </ContentContainer>
           {/* 웹 기반 스터디 인증 SNS */}
-          <Content>
+          <ContentContainer>
             <Project isAlignReverse={true}>
               <Project.ImageContainer image={studyLogProjectImg} />
               <Project.Description
@@ -137,9 +138,9 @@ export default function Contents() {
                 animeDirection="RToL"
               ></Project.Description>
             </Project>
-          </Content>
+          </ContentContainer>
           {/* VSCode Extension */}
-          <Content>
+          <ContentContainer>
             <Project isAlignReverse={false}>
               <Project.ImageContainer image={vscodeExtensionProjectImg} />
               <Project.Description
@@ -160,8 +161,8 @@ export default function Contents() {
                 animeDirection="RToL"
               ></Project.Description>
             </Project>
-          </Content>
-          <Content>
+          </ContentContainer>
+          <ContentContainer>
             <Project isAlignReverse={false}>
               <Project.ImageContainer image={vscodeExtensionProjectImg} />
               <Project.Description
@@ -178,29 +179,29 @@ export default function Contents() {
                 animeDirection="RToL"
               ></Project.Description>
             </Project>
-          </Content>
-          <Content>
+          </ContentContainer>
+          <ContentContainer>
             <h1 className="text-4xl font-bold text-white">My 8</h1>
             <p className="text-lg">What's next?</p>
-          </Content>
-          <Content>
+          </ContentContainer>
+          <ContentContainer>
             <h1 className="text-4xl font-bold text-white">My 9</h1>
             <p className="text-lg">What's next?</p>
-          </Content>
-          <Content>
+          </ContentContainer>
+          <ContentContainer>
             <h1 className="text-4xl font-bold text-white">My 10</h1>
             <p className="text-lg">What's next?</p>
-          </Content>
-          <Content>
+          </ContentContainer>
+          <ContentContainer>
             <h1 className="text-4xl font-bold text-white">My 11</h1>
             <p className="text-lg">What's next?</p>
-          </Content>
+          </ContentContainer>
           {/* 137.5vh */}
-          <Content height="137.5vh" scrollSnapAlign="end">
+          <ContentContainer height="137.5vh" scrollSnapAlign="end">
             <div className="flex h-[100vh] flex-col justify-center items-center">
               <Contact />
             </div>
-          </Content>
+          </ContentContainer>
         </section>
       </main>
       <div className="fixed text-white bottom-2 left-2 z-99" ref={scrollRef}>

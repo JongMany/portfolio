@@ -1,4 +1,4 @@
-import { useTypingAnimation } from "@/hooks/typing/useTypingAnimation";
+import { useTypingAnimation } from "@/shared/hooks/index";
 
 export default function Home() {
   const { typingText } = useTypingAnimation({

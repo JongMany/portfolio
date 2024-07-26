@@ -3,7 +3,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import {
   animationScript,
   animationTimeline,
-} from "../pages/root/constants/animationScript";
+} from "@/shared/constants/animationScript";
 import { points } from "@/shared/constants/points";
 import { Star } from "@/webGl/Star";
 import { MyStar } from "@/webGl/MyStar";

@@ -69,6 +69,8 @@ export default function MyProfile() {
             <p className="grid grid-cols-2 ml-4">
               <span>Docker</span>
               <span>AWS</span>
+              <span>Flutter</span>
+              <span>함수형 프로그래밍</span>
             </p>
           </div>
         </div>

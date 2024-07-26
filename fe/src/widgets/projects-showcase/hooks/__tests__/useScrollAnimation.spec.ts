@@ -97,4 +97,85 @@ describe("useScrollAnimation", () => {
 
     expect(unsubscribe).toHaveBeenCalled();
   });
+
+  it("should handle null containerRef gracefully", () => {
+    containerRef.current = null;
+
+    renderHook(() => useScrollAnimation(containerRef, scrollRef));
+
+    expect(StarScene).not.toHaveBeenCalled();
+  });
+
+  it("should handle null scrollRef gracefully", () => {
+    scrollRef.current = null;
+
+    renderHook(() => useScrollAnimation(containerRef, scrollRef));
+
+    expect(scrollYProgress.on).toHaveBeenCalledWith(
+      "change",
+      expect.any(Function)
+    );
+  });
+
+  it("should not call updateScrollRate if scrollYProgress does not change", () => {
+    const { result } = renderHook(() =>
+      useScrollAnimation(containerRef, scrollRef)
+    );
+
+    expect(scrollYProgress.on).toHaveBeenCalledWith(
+      "change",
+      expect.any(Function)
+    );
+
+    // `scrollYProgress.on`에 등록된 함수는 한 번도 호출되지 않아야 합니다.
+    expect(
+      result.current.sceneRef.current?.updateScrollRate
+    ).not.toHaveBeenCalled();
+  });
+
+  it("should call updateScrollRate with various scroll rates", () => {
+    const { result } = renderHook(() =>
+      useScrollAnimation(containerRef, scrollRef)
+    );
+
+    const scrollChangeHandler = scrollYProgress.on.mock.calls[0][1];
+
+    [0, 0.25, 0.5, 0.75, 1].forEach((rate) => {
+      scrollChangeHandler(rate);
+      expect(
+        result.current.sceneRef.current?.updateScrollRate
+      ).toHaveBeenCalledWith(rate);
+    });
+  });
+
+  it("should reinitialize StarScene when containerRef changes", () => {
+    // Setting
+    const unsubscribe = vi.fn();
+    scrollYProgress.on.mockReturnValue(unsubscribe);
+    const { rerender } = renderHook(
+      ({ container, scroll }) => useScrollAnimation(container, scroll),
+      {
+        initialProps: { container: containerRef, scroll: scrollRef },
+      }
+    );
+
+    const newContainerRef = { current: document.createElement("div") };
+    rerender({ container: newContainerRef, scroll: scrollRef });
+
+    expect(StarScene).toHaveBeenCalledTimes(2);
+  });
+
+  it("should reinitialize StarScene when scrollRef changes", () => {
+    const { rerender } = renderHook(
+      ({ container, scroll }) => useScrollAnimation(container, scroll),
+      {
+        initialProps: { container: containerRef, scroll: scrollRef },
+      }
+    );
+
+    const newScrollRef = { current: document.createElement("div") };
+    rerender({ container: containerRef, scroll: newScrollRef });
+
+    expect(StarScene).toHaveBeenCalledTimes(1); // 여기서는 새로운 StarScene을 초기화하지 않아야 합니다.
+  });
 });

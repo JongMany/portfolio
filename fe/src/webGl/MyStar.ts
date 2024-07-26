@@ -1,7 +1,7 @@
 import {
   starFragmentShader,
   starVertexShader,
-} from "@/constants/shader/starShader";
+} from "@/shared/constants/shader/starShader";
 import * as THREE from "three";
 
 export class MyStar {

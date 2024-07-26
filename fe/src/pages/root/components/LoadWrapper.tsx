@@ -1,4 +1,4 @@
-import { MainLoadingScreen } from "@/components/shared/loadingScreen/MainLoadingScreen";
+import { MainLoadingScreen } from "@/shared/components/loadingScreen/MainLoadingScreen";
 import Main from "@/pages/root/components/Main";
 import { useState } from "react";
 

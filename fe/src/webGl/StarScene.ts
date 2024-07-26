@@ -4,7 +4,7 @@ import {
   animationScript,
   animationTimeline,
 } from "../pages/root/constants/animationScript";
-import { points } from "@/constants/points";
+import { points } from "@/shared/constants/points";
 import { Star } from "@/webGl/Star";
 import { MyStar } from "@/webGl/MyStar";
 

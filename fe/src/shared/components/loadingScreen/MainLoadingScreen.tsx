@@ -1,4 +1,4 @@
-import LoadAnimation from "@/components/shared/loadingScreen/LoadAnimation";
+import LoadAnimation from "@/shared/components/loadingScreen/LoadAnimation";
 import NProgress from "nprogress";
 import { useEffect, useState } from "react";
 

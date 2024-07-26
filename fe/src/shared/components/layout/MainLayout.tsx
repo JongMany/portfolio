@@ -1,4 +1,4 @@
-import MainHeader from "@/components/shared/header/MainHeader";
+import MainHeader from "@/shared/components/header/MainHeader";
 import { Outlet } from "react-router-dom";
 
 export function MainLayout() {

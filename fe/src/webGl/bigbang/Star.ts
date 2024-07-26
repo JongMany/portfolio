@@ -3,7 +3,7 @@ import * as THREE from "three";
 import {
   starFragmentShader,
   starVertexShader,
-} from "@/constants/shader/starShader";
+} from "@/shared/constants/shader/starShader";
 
 export class Star {
   private uniforms: {

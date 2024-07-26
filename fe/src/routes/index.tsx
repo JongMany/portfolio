@@ -1,7 +1,7 @@
 import { Suspense, createElement, lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ErrorLayout from "../components/shared/layout/ErrorLayout";
-import { MainLayout } from "../components/shared/layout/MainLayout";
+import ErrorLayout from "../shared/components/layout/ErrorLayout";
+import { MainLayout } from "../shared/components/layout/MainLayout";
 import RootPage from "../pages/root/page";
 const NotFoundPage = lazy(() => import("@/pages/not-found/page"));
 

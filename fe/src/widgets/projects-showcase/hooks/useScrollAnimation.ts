@@ -13,7 +13,8 @@ export const useScrollAnimation = (
   });
 
   useEffect(() => {
-    if (containerRef.current && !sceneRef.current) {
+    // && !sceneRef.current
+    if (containerRef.current) {
       sceneRef.current = new StarScene(
         new THREE.WebGLRenderer({
           antialias: true,
@@ -31,4 +32,8 @@ export const useScrollAnimation = (
       unsubscribe();
     };
   }, [containerRef, scrollYProgress]);
+
+  return {
+    sceneRef,
+  };
 };

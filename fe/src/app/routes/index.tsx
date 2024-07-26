@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorLayout from "../layout/ErrorLayout";
 import { MainLayout } from "@/app/layout/MainLayout";
 import MainPage from "@/pages/main/index";
-const NotFoundPage = lazy(() => import("@/pages/not-found/page"));
+const NotFoundPage = lazy(() => import("@/pages/not-found/index"));
 
 // const MainPage = lazy(() => import("../pages/main/MainPage"));
 

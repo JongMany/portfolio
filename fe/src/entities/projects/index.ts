@@ -1,1 +1,1 @@
-export * from "./ui/ContentContainer";
+export { default } from "./ui/Project";

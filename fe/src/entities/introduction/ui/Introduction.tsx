@@ -1,6 +1,6 @@
 import { useTypingAnimation } from "@/shared/hooks/index";
 
-export default function Home() {
+export default function Introdcution() {
   const { typingText } = useTypingAnimation({
     texts: [
       "저는 사용자 입장을 고려하는 프론트엔드 개발자입니다. \n 사용자에게 더 나은 경험을 제공하기 위해 노력하고 있습니다. \n 사용자의 피드백을 수용하여 개선하는 것을 중요하게 생각합니다.",

@@ -1,20 +1,20 @@
-import { useScrollAnimation } from "@/pages/root/hooks/useScrollAnimation";
+import { useScrollAnimation } from "@/widgets/projects-showcase/hooks/useScrollAnimation";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useRef } from "react";
 import FileDownload from "@/features/download-file/index";
 import Contact from "@/entities/contact/index";
 
-import MyProfile from "@/pages/root/components/content/MyProfile";
-import ContentContainer from "@/entities/projects/ui/ContentContainer";
+import MyProfile from "@/entities/profile/index";
+import ContentContainer from "@/shared/ui/content-container/ContentContainer";
+import Introduction from "@/entities/introduction/index";
+import Project from "@/entities/projects/index";
 
-import Home from "@/pages/root/components/content/Home";
-import Project from "@/pages/root/components/content/Project";
-// IMG
-import studyLogProjectImg from "@/shared/assets/study-log.png";
-import readyToWorkProjectImg from "@/shared/assets/ready_to_work.png";
-import cryptoProjectImg from "@/shared/assets/crypto.png";
-import eyeveProjectImg from "@/shared/assets/eyeve.png";
-import vscodeExtensionProjectImg from "@/shared/assets/vscode-extension.png";
+// IMG Resources
+import studyLogProjectImg from "@/shared/assets/images/study-log.png";
+import readyToWorkProjectImg from "@/shared/assets/images/ready_to_work.png";
+import cryptoProjectImg from "@/shared/assets/images/crypto.png";
+import eyeveProjectImg from "@/shared/assets/images/eyeve.png";
+import vscodeExtensionProjectImg from "@/shared/assets/images/vscode-extension.png";
 
 export default function ProjectsShowCase() {
   const ref = useRef<HTMLDivElement>(null);
@@ -48,7 +48,7 @@ export default function ProjectsShowCase() {
           </div>
           {/* 홈 */}
           <ContentContainer height="137.5vh">
-            <Home />
+            <Introduction />
           </ContentContainer>
           {/* 프로필 */}
           <ContentContainer>

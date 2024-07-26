@@ -31,4 +31,8 @@ export const useScrollAnimation = (
       unsubscribe();
     };
   }, [containerRef, scrollYProgress]);
+
+  return {
+    sceneRef,
+  };
 };

@@ -1,6 +1,6 @@
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import * as THREE from "three";
-import { Star } from "@/webGl/bigbang/Star";
+import { Star } from "@/shared/constants/webGl/bigbang/Star";
 
 export class BigBangScene {
   private scene: THREE.Scene;

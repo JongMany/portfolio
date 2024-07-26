@@ -1,4 +1,4 @@
-import { StarScene } from "@/webGl/StarScene";
+import { StarScene } from "@/shared/constants/webGl/StarScene";
 import { useScroll } from "framer-motion";
 import { MutableRefObject, useEffect, useRef } from "react";
 import * as THREE from "three";

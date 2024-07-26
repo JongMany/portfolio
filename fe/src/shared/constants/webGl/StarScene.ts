@@ -5,8 +5,8 @@ import {
   animationTimeline,
 } from "@/shared/constants/animationScript";
 import { points } from "@/shared/constants/points";
-import { Star } from "@/webGl/Star";
-import { MyStar } from "@/webGl/MyStar";
+import { Star } from "@/shared/constants/webGl/Star";
+import { MyStar } from "@/shared/constants/webGl/MyStar";
 
 /**
  * @class StarScene

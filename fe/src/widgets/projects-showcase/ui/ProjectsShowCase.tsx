@@ -35,7 +35,7 @@ export default function ProjectsShowCase() {
   return (
     <>
       <main
-        className="absolute top-0 left-0 w-full h-[100vh]"
+        className="absolute top-0 left-0 w-full h-[100vh] scrollbar-hide"
         style={{
           scrollSnapType: "y mandatory",
           overflowY: "auto",

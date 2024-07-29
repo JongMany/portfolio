@@ -1,4 +1,3 @@
-// import MainPageWithLoading from "@/pages/main/ui/MainPageWithLoading";
 import { DetailHelmet } from "@/shared/ui/meta/DetailHelmet";
 import { withLoading } from "./withLoading/withLoading";
 import ProjectsShowCase from "@/widgets/main/projects-showcase/ui/ProjectsShowCase";
@@ -14,7 +13,6 @@ export default function MainPage() {
         shortDesc="방구석 코딩쟁이의 포트폴리오를 소개합니다."
       />
       <ProjectsShowCaseWithLoading />
-      {/* <MainPageWithLoading /> */}
     </>
   );
 }

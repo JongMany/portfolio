@@ -1,5 +1,5 @@
 import { renderHook, act } from "@testing-library/react";
-import { useMediaQuery } from "@/shared/hooks/media-query/useMediaQuery";
+import { useMediaQuery } from "@/shared/libs/media-query/useMediaQuery";
 
 describe("useMediaQuery", () => {
   const originalMatchMedia = window.matchMedia;

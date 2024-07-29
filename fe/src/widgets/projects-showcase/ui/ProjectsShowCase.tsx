@@ -1,4 +1,4 @@
-import { useScrollAnimation } from "@/widgets/projects-showcase/hooks/useScrollAnimation";
+import { useScrollAnimation } from "@/widgets/projects-showcase/libs/useScrollAnimation";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useRef } from "react";
 import FileDownload from "@/features/download-file/index";

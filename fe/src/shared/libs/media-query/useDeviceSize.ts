@@ -1,4 +1,4 @@
-import { useMediaQuery } from "@/shared/hooks/media-query/useMediaQuery";
+import { useMediaQuery } from "@/shared/libs/media-query/useMediaQuery";
 
 export function useDeviceSize() {
   const isDesktopQuery = "(min-width: 1024px)";

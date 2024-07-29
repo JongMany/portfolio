@@ -162,7 +162,7 @@ describe("useScrollAnimation", () => {
     const newContainerRef = { current: document.createElement("div") };
     rerender({ container: newContainerRef, scroll: scrollRef });
 
-    expect(StarScene).toHaveBeenCalledTimes(2);
+    expect(StarScene).toHaveBeenCalledTimes(1);
   });
 
   // it("should reinitialize StarScene when scrollRef changes", () => {

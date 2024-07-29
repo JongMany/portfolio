@@ -13,8 +13,16 @@ export const useScrollAnimation = (
   });
 
   useEffect(() => {
-    // && !sceneRef.current
-    if (containerRef.current) {
+    // // && !sceneRef.current
+    // if (containerRef.current) {
+    //   sceneRef.current = new StarScene(
+    //     new THREE.WebGLRenderer({
+    //       antialias: true,
+    //     }),
+    //     containerRef.current
+    //   );
+    // }
+    if (containerRef.current && !sceneRef.current) {
       sceneRef.current = new StarScene(
         new THREE.WebGLRenderer({
           antialias: true,
@@ -22,7 +30,6 @@ export const useScrollAnimation = (
         containerRef.current
       );
     }
-
     const unsubscribe = scrollYProgress.on("change", (scrollRate) => {
       if (!sceneRef.current) return;
       sceneRef.current.updateScrollRate(scrollRate);

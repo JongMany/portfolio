@@ -27,7 +27,7 @@ export default function Project({
       <div
         className={`flex ${
           isAlignReverse ? "flex-row-reverse" : "flex-row"
-        } gap-x-4 w-[70vw]`}
+        } gap-x-4 w-[85vw]`}
       >
         {children}
       </div>

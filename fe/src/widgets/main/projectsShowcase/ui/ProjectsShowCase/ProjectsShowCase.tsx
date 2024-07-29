@@ -1,7 +1,7 @@
-import { useScrollAnimation } from "@/widgets/projects-showcase/hooks/useScrollAnimation";
+import { useScrollAnimation } from "@/widgets/main/projectsShowcase/libs/useScrollAnimation";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useRef } from "react";
-import FileDownload from "@/features/download-file/index";
+import { FileDownloadButton } from "@/entities/projects/index";
 import Contact from "@/entities/contact/index";
 
 import MyProfile from "@/entities/profile/index";
@@ -15,8 +15,9 @@ import readyToWorkProjectImg from "@/shared/assets/images/ready_to_work.png";
 import cryptoProjectImg from "@/shared/assets/images/crypto.png";
 import eyeveProjectImg from "@/shared/assets/images/eyeve.png";
 import vscodeExtensionProjectImg from "@/shared/assets/images/vscode-extension.png";
+import { withLoading } from "@/widgets/main/projectsShowcase/ui/withLoading/withLoading";
 
-export default function ProjectsShowCase() {
+function ProjectsShowCase() {
   const ref = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -35,7 +36,7 @@ export default function ProjectsShowCase() {
   return (
     <>
       <main
-        className="absolute top-0 left-0 w-full h-[100vh]"
+        className="absolute top-0 left-0 w-full h-[100vh] scrollbar-hide"
         style={{
           scrollSnapType: "y mandatory",
           overflowY: "auto",
@@ -93,7 +94,7 @@ export default function ProjectsShowCase() {
                 ]}
                 animeDirection="RToL"
               >
-                <FileDownload
+                <FileDownloadButton
                   fileUrl={`${import.meta.env.VITE_API_SERVER}/files/eyeve.pdf`}
                 />
               </Project.Description>
@@ -211,3 +212,5 @@ export default function ProjectsShowCase() {
     </>
   );
 }
+
+export const ProjectsShowCaseWithLoading = withLoading(ProjectsShowCase);

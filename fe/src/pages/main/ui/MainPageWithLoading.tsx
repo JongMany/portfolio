@@ -3,16 +3,16 @@ import ProjectsShowCase from "@/widgets/projects-showcase/ui/ProjectsShowCase";
 import { useState } from "react";
 
 export default function MainPageWithLoading() {
-  const [start, setStart] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const showStartPage = () => {
-    setStart(true);
+    setIsLoading(false);
   };
 
   return (
     <>
-      {start && <ProjectsShowCase />}
-      <MainLoadingScreen started={start} onStarted={showStartPage} />
+      {!isLoading && <ProjectsShowCase />}
+      <MainLoadingScreen isLoading={isLoading} onStarted={showStartPage} />
     </>
   );
 }

@@ -10,7 +10,7 @@ NProgress.configure({
   speed: 100,
 });
 
-export const MainLoadingScreen = ({ started, onStarted }) => {
+export const MainLoadingScreen = ({ isLoading, onStarted }) => {
   const [contentLoadState, setContetLoadState] = useState<
     "loading" | "error" | "finish"
   >("loading");
@@ -50,7 +50,7 @@ export const MainLoadingScreen = ({ started, onStarted }) => {
     <div
       className={`z-50 absolute h-[100vh] w-[100vw] transition-all durtaion-300  ${
         // started ? "z-0 hidden" : ""
-        started ? "opacity-0 -z-10 invisible" : ""
+        !isLoading ? "opacity-0 -z-10 invisible" : ""
       }`}
     >
       <LoadAnimation />

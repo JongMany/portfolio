@@ -1,7 +1,7 @@
 import { useScrollAnimation } from "@/widgets/projects-showcase/libs/useScrollAnimation";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useRef } from "react";
-import FileDownload from "@/features/download-file/index";
+import { FileDownloadButton } from "@/entities/projects/index";
 import Contact from "@/entities/contact/index";
 
 import MyProfile from "@/entities/profile/index";
@@ -93,7 +93,7 @@ export default function ProjectsShowCase() {
                 ]}
                 animeDirection="RToL"
               >
-                <FileDownload
+                <FileDownloadButton
                   fileUrl={`${import.meta.env.VITE_API_SERVER}/files/eyeve.pdf`}
                 />
               </Project.Description>

@@ -54,6 +54,7 @@ describe("useMediaQuery", () => {
         },
         removeListener: vi.fn(),
         addEventListener: (event: string, listener: () => void) => {
+          console.log("addEventListener", event);
           matchMediaListeners[query] = listener;
         },
         removeEventListener: vi.fn(),

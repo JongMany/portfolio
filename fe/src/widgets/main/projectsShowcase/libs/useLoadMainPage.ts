@@ -23,9 +23,13 @@ export function useLoadMainPage() {
       "@/widgets/main/projectsShowcase/ui/ProjectsShowCase/ProjectsShowCase.tsx"
     )
       .then((module) => {
-        setContetLoadState("finish");
-        console.log(module);
-        NProgress.done();
+        // console.log(module);
+        if (module === undefined) {
+          setContetLoadState("error");
+        } else {
+          setContetLoadState("finish");
+          NProgress.done();
+        }
       })
       .catch((error) => {
         setContetLoadState("error");

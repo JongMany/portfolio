@@ -44,7 +44,7 @@ describe("useMediaQuery", () => {
   it("should update when media query changes", () => {
     const matchMediaListeners: { [key: string]: () => void } = {};
     window.matchMedia = vi.fn().mockImplementation((query: string) => {
-      const listeners: Array<() => void> = [];
+      // const listeners: Array<() => void> = [];
       return {
         matches: query === "(min-width: 1024px)",
         media: query,

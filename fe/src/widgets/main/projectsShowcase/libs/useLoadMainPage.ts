@@ -19,10 +19,12 @@ export function useLoadMainPage() {
 
   useEffect(() => {
     NProgress.start();
-    import("@/widgets/main/projects-showcase/ui/ProjectsShowCase.tsx")
+    import(
+      "@/widgets/main/projectsShowcase/ui/ProjectsShowCase/ProjectsShowCase.tsx"
+    )
       .then((module) => {
         setContetLoadState("finish");
-        console.log(module.default);
+        console.log(module);
         NProgress.done();
       })
       .catch((error) => {

@@ -1,5 +1,5 @@
 import LoadAnimation from "@/shared/ui/loadingScreen/LoadAnimation";
-import { useLoadMainPage } from "@/widgets/main/projects-showcase/libs/useLoadMainPage";
+import { useLoadMainPage } from "@/widgets/main/projectsShowcase/libs/useLoadMainPage";
 import NProgress from "nprogress";
 
 NProgress.configure({

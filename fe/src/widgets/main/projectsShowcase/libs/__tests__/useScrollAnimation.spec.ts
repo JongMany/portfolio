@@ -5,7 +5,7 @@ import { renderHook } from "@testing-library/react";
 import { MutableRefObject } from "react";
 
 import { Mock } from "vitest";
-import { useScrollAnimation } from "@/widgets/main/projects-showcase/libs/useScrollAnimation";
+import { useScrollAnimation } from "@/widgets/main/projectsShowcase/libs/useScrollAnimation";
 
 // Mocking dependencies
 vi.mock("three", async () => {

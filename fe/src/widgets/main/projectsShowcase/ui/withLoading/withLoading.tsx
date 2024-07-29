@@ -1,4 +1,4 @@
-import { MainLoadingScreen } from "@/widgets/main/projects-showcase/index";
+import { MainLoadingScreen } from "@/widgets/main/projectsShowcase/ui/loadingScreen/MainLoadingScreen";
 import { ComponentType, useState } from "react";
 
 export function withLoading<P extends object>(

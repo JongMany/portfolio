@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { lerp, scalePercent } from "@/shared/utils/lerp";
-import { points } from "@/shared/constants/points";
+import { points } from "@/shared/constants/animation/points";
 
 type AnimationTimeline = {
   start: number;

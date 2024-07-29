@@ -1,10 +1,6 @@
 import { useState } from "react";
 
-type Props = {
-  fileUrl: string;
-};
-
-export default function FileDownload({ fileUrl }: Props) {
+export function useDownloadFile(fileUrl: string) {
   const [isDownloading, setIsDownloading] = useState(false);
   const handleFileDownload = () => {
     if (!isDownloading) {
@@ -29,18 +25,5 @@ export default function FileDownload({ fileUrl }: Props) {
     }
   };
 
-  return (
-    <div>
-      <button
-        onClick={handleFileDownload}
-        disabled={isDownloading}
-        className="text-white"
-      >
-        {isDownloading ? "Downloading..." : "Download"}
-      </button>
-      {/* <form action={fileUrl} method="get" target="_blank">
-        <button type="submit">Download</button>
-      </form> */}
-    </div>
-  );
+  return { isDownloading, handleFileDownload };
 }

@@ -1,7 +1,7 @@
 // import MainPageWithLoading from "@/pages/main/ui/MainPageWithLoading";
 import { DetailHelmet } from "@/shared/ui/meta/DetailHelmet";
-import { withLoading } from "./withLoading";
-import ProjectsShowCase from "@/widgets/projects-showcase/ui/ProjectsShowCase";
+import { withLoading } from "./withLoading/withLoading";
+import ProjectsShowCase from "@/widgets/main/projects-showcase/ui/ProjectsShowCase";
 const ProjectsShowCaseWithLoading = withLoading(ProjectsShowCase);
 
 export default function MainPage() {

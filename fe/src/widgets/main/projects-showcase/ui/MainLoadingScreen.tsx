@@ -27,7 +27,7 @@ export const MainLoadingScreen = ({ isLoading, onStarted }) => {
 
   useEffect(() => {
     NProgress.start();
-    import("@/widgets/projects-showcase/ui/ProjectsShowCase.tsx")
+    import("@/widgets/main/projects-showcase/ui/ProjectsShowCase.tsx")
       .then((module) => {
         setContetLoadState("finish");
         console.log(module.default);

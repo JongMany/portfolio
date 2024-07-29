@@ -1,7 +1,9 @@
 import { useDeviceSize } from "@/shared/libs";
-import { PropsWithChildren, useRef } from "react";
+import { PropsWithChildren, useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
+import "./ImageContainer.css";
+
 type Props = {
   isAlignReverse?: boolean;
 };
@@ -44,18 +46,57 @@ function getAlignStyle(alignDirection: "row" | "col", alignReverse?: boolean) {
   return "flex-row";
 }
 
+// https://blog.webdevsimplified.com/2023-05/lazy-load-images/
 const ImageContainer = ({
   image,
   alt = "project",
+  smallImageUrl,
 }: {
   image: string;
   alt?: string;
+  smallImageUrl: string;
 }) => {
   const device = useDeviceSize();
   const imageStyle = device === "desktop" ? "w-full" : "w-[80vw] h-[40vh]";
+  const blurredImageDivRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    function loaded() {
+      if (blurredImageDivRef.current) {
+        setIsLoaded(true);
+        blurredImageDivRef.current.classList.add("loaded");
+      }
+    }
+
+    const img = imageRef.current;
+    if (img?.complete) {
+      loaded();
+    } else {
+      img?.addEventListener("load", loaded);
+    }
+
+    return () => {
+      img?.removeEventListener("load", loaded);
+    };
+  }, []);
+
   return (
     <div className="basis-[50%] flex flex-col items-center justify-center">
-      <img className={`${imageStyle}`} src={image} alt={alt} />
+      <div
+        style={{ backgroundImage: `url(${smallImageUrl})` }}
+        className={`blurred-img`}
+        ref={blurredImageDivRef}
+      >
+        <img
+          ref={imageRef}
+          className={`${imageStyle}`}
+          src={image}
+          alt={alt}
+          loading="lazy"
+        />
+      </div>
     </div>
   );
 };

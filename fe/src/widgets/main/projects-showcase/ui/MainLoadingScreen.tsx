@@ -1,6 +1,6 @@
 import LoadAnimation from "@/shared/ui/loadingScreen/LoadAnimation";
+import { useLoadMainPage } from "@/widgets/main/projects-showcase/libs/useLoadMainPage";
 import NProgress from "nprogress";
-import { useEffect, useState } from "react";
 
 NProgress.configure({
   showSpinner: false,
@@ -11,39 +11,7 @@ NProgress.configure({
 });
 
 export const MainLoadingScreen = ({ isLoading, onStarted }) => {
-  const [contentLoadState, setContetLoadState] = useState<
-    "loading" | "error" | "finish"
-  >("loading");
-  const [minTimeFinish, setMinTimeFinish] = useState<"loading" | "finish">(
-    "loading"
-  );
-
-  // 최소 시간 대기 후 finish
-  useEffect(() => {
-    setTimeout(() => {
-      setMinTimeFinish("finish");
-    }, 1000);
-  }, []);
-
-  useEffect(() => {
-    NProgress.start();
-    import("@/widgets/main/projects-showcase/ui/ProjectsShowCase.tsx")
-      .then((module) => {
-        setContetLoadState("finish");
-        console.log(module.default);
-        NProgress.done();
-      })
-      .catch((error) => {
-        setContetLoadState("error");
-        console.error("error", error);
-      });
-    // import("./ProjectsShowCase")
-  }, []);
-
-  const buttonDisabled =
-    contentLoadState === "loading" ||
-    minTimeFinish === "loading" ||
-    contentLoadState === "error";
+  const { isButtonDisabled } = useLoadMainPage();
 
   return (
     //absolute z-50 h-[100vh] w-[100vw] flex justify-center items-center
@@ -57,8 +25,8 @@ export const MainLoadingScreen = ({ isLoading, onStarted }) => {
       <div className="absolute z-10 bottom-10 left-[50%] -translate-x-[50%]">
         <button
           // className="loadingScreen__button"
-          className={`${buttonDisabled ? "text-gray-400" : "text-white"}`}
-          disabled={buttonDisabled}
+          className={`${isButtonDisabled ? "text-gray-400" : "text-white"}`}
+          disabled={isButtonDisabled}
           onClick={onStarted}
         >
           메인페이지로 이동

@@ -4,10 +4,10 @@ import { useRef } from "react";
 import { FileDownloadButton } from "@/entities/projects/index";
 import Contact from "@/entities/contact/index";
 
-import MyProfile from "@/entities/profile/index";
+import MyCareer from "@/entities/career/index";
 import ContentContainer from "@/shared/ui/content-container/ContentContainer";
 import Introduction from "@/entities/introduction/index";
-import Project from "@/entities/projects/index";
+import { ProjectContainer as Project } from "@/entities/projects/index";
 
 // IMG Resources
 import studyLogProjectImg from "@/shared/assets/images/study-log.png";
@@ -51,9 +51,9 @@ function ProjectsShowCase() {
           <ContentContainer height="137.5vh">
             <Introduction />
           </ContentContainer>
-          {/* 프로필 */}
+          {/* 경력 */}
           <ContentContainer>
-            <MyProfile />
+            <MyCareer />
           </ContentContainer>
           {/* Ready To Work Project */}
           <ContentContainer>

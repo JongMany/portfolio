@@ -1,15 +1,19 @@
+import { useDeviceSize } from "@/shared/libs";
 import { PropsWithChildren, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-
 type Props = {
   isAlignReverse?: boolean;
 };
-export default function Project({
-  isAlignReverse = false,
+export default function ProjectContainer({
+  isAlignReverse,
   children,
 }: PropsWithChildren<Props>) {
+  const device = useDeviceSize();
+
+  const rowAlign = device === "desktop" ? "row" : "col";
+  const alignStyle = getAlignStyle(rowAlign, isAlignReverse);
+
   const containerRef = useRef<HTMLElement>(null);
   const isInView = useInView(containerRef, {});
 
@@ -24,16 +28,20 @@ export default function Project({
         // transitionDelay: "0.5s",
       }}
     >
-      <div
-        className={`flex ${
-          // isAlignReverse ? "flex-row-reverse" : "flex-row"
-          isAlignReverse ? "flex-row-reverse" : "flex-row"
-        } gap-x-4 w-[85vw]`}
-      >
-        {children}
-      </div>
+      <div className={`flex ${alignStyle} gap-x-4 w-[85vw]`}>{children}</div>
     </motion.article>
   );
+}
+
+function getAlignStyle(alignDirection: "row" | "col", alignReverse?: boolean) {
+  if (alignDirection === "col") {
+    return "flex-col";
+  }
+
+  if (alignReverse) {
+    return "flex-row-reverse";
+  }
+  return "flex-row";
 }
 
 const ImageContainer = ({
@@ -43,9 +51,11 @@ const ImageContainer = ({
   image: string;
   alt?: string;
 }) => {
+  const device = useDeviceSize();
+  const imageStyle = device === "desktop" ? "w-full" : "w-[80vw] h-[40vh]";
   return (
-    <div className="basis-[40%] flex flex-col items-center justify-center">
-      <img className="w-full" src={image} alt={alt} />
+    <div className="basis-[50%] flex flex-col items-center justify-center">
+      <img className={`${imageStyle}`} src={image} alt={alt} />
     </div>
   );
 };
@@ -63,25 +73,33 @@ const Description = ({
   animeDirection,
   children,
 }: PropsWithChildren<DescriptionProps>) => {
+  const device = useDeviceSize();
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, {});
 
+  const headTextFontStyle = device === "desktop" ? "text-xl" : "text-lg";
+  const detailTextFontStyle = device === "desktop" ? "text-sm" : "text-xs";
+
   return (
     <div
-      className="flex flex-col items-start justify-center basis-[60%] backdrop-blur-sm px-4 py-2"
+      className="flex flex-col items-start justify-center basis-[50%] backdrop-blur-sm px-4 py-2"
       ref={containerRef}
     >
-      <h1 className="flex items-center justify-center mb-4 text-3xl">
-        <span className="pr-4 mr-4 border-r-2 min-w-[40%]">프로젝트 명 </span>
-        <span className="flex-1 text-2xl">{projectName}</span>
+      <h1 className="flex items-center justify-center w-full mb-4 text-2xl">
+        <span className="pr-4 mr-4 border-r-2 max-w-[40%]">프로젝트 명 </span>
+        <span className={`flex-1 text-2xl ${headTextFontStyle}`}>
+          {projectName}
+        </span>
       </h1>
-      <p className="flex flex-col mb-4">
+      <p className="flex flex-col flex-1 mb-4">
         <span className="text-xl font-semibold">프로젝트 소개</span>
-        <span className="ml-4">{projectDescription}</span>
+        <span className={`ml-4 ${detailTextFontStyle}`}>
+          {projectDescription}
+        </span>
       </p>
       <div className="mb-4">
         <p className="mb-2 font-semibold">사용한 기술 스택</p>
-        <ul className="flex flex-col ml-4 text-sm gap-y-1">
+        <ul className={`flex flex-col ml-4 gap-y-1 ${detailTextFontStyle}`}>
           {techSkills.map((skill, idx) => (
             <li
               key={skill}
@@ -108,5 +126,5 @@ const Description = ({
     </div>
   );
 };
-Project.ImageContainer = ImageContainer;
-Project.Description = Description;
+ProjectContainer.ImageContainer = ImageContainer;
+ProjectContainer.Description = Description;

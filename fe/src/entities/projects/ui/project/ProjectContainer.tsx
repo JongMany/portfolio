@@ -123,7 +123,7 @@ const Description = ({
   const detailTextFontStyle = device === "desktop" ? "text-sm" : "text-xs";
 
   const selectedTechSkills =
-    device === "desktop" ? techSkills : techSkills.slice(0, 3);
+    device === "desktop" ? techSkills : [...techSkills.slice(0, 3), "..."];
 
   return (
     <div

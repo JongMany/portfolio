@@ -14,7 +14,7 @@ import portfolioProjectSmallImg from "@/shared/assets/images/portfolio-small.png
 export type AdditionalInfo = {
   type: "DownloadFile";
   content: string;
-} & { type: string; content: any };
+} & { type: string; content: unknown };
 
 interface Project {
   image: {

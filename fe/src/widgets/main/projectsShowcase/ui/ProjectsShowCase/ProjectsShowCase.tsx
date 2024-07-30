@@ -9,20 +9,20 @@ import ContentContainer from "@/shared/ui/content-container/ContentContainer";
 import Introduction from "@/entities/introduction/index";
 import { ProjectContainer as Project } from "@/entities/projects/index";
 
-// IMG Resources
-import studyLogProjectImg from "@/shared/assets/images/study-log.png";
-import studyLogProjectSmallImg from "@/shared/assets/images/study-log-small.png";
-import readyToWorkProjectImg from "@/shared/assets/images/ready_to_work.png";
-import readyToWorkProjectSmallImg from "@/shared/assets/images/ready_to_work-small.png";
-import cryptoProjectImg from "@/shared/assets/images/crypto.png";
-import cryptoProjectSmallImg from "@/shared/assets/images/crypto-small.png";
-import eyeveProjectImg from "@/shared/assets/images/eyeve.png";
-import eyeveProjectSmallImg from "@/shared/assets/images/eyeve-small.png";
-import vscodeExtensionProjectImg from "@/shared/assets/images/vscode-extension.png";
-import vscodeExtensionProjectSmallImg from "@/shared/assets/images/vscode-extension-small.png";
-import portfolioProjectImg from "@/shared/assets/images/portfolio.png";
-import portfolioProjectSmallImg from "@/shared/assets/images/portfolio-small.png";
 import { withLoading } from "@/widgets/main/projectsShowcase/ui/withLoading/withLoading";
+import {
+  type AdditionalInfo,
+  projectList,
+} from "@/widgets/main/projectsShowcase/constants/projectList";
+
+function renderAdditionalInfo(additionalInfo: AdditionalInfo) {
+  switch (additionalInfo.type) {
+    case "DownloadFile":
+      return <FileDownloadButton fileUrl={additionalInfo.content} />;
+    default:
+      return <></>;
+  }
+}
 
 function ProjectsShowCase() {
   const ref = useRef<HTMLDivElement>(null);
@@ -62,151 +62,27 @@ function ProjectsShowCase() {
           <ContentContainer>
             <MyCareer />
           </ContentContainer>
-          {/* Ready To Work Project */}
-          <ContentContainer>
-            <Project isAlignReverse={false}>
-              <Project.ImageContainer
-                image={readyToWorkProjectImg}
-                smallImageUrl={readyToWorkProjectSmallImg}
-              />
-              <Project.Description
-                projectName="Ready To Work"
-                projectDescription="엔카의 김상범 대표님과 광운대학교의 IDEA Lab에서 진행한 프로젝트입니다. HR 도메인의 B2B 서비스이며, 문제 해결 방식을 통해 인재 채용을 쉽게 할 수 있도록 도움을 주고자 서비스를 기획하였습니다."
-                techSkills={[
-                  "React",
-                  "TypeScript",
-                  "Tailwind CSS",
-                  "Ant Design",
-                  "Zustand",
-                  "Tanstack Query",
-                  "D3.js",
-                  "...",
-                ]}
-                animeDirection="LToR"
-              />
-            </Project>
-          </ContentContainer>
-
-          <ContentContainer>
-            <Project isAlignReverse={true}>
-              <Project.ImageContainer
-                image={eyeveProjectImg}
-                smallImageUrl={eyeveProjectSmallImg}
-              />
-              <Project.Description
-                projectName="Eyeve"
-                projectDescription="광운대학교 IDEA Lab에서 카메라를 통한 시선 추적을 통해 학생들의 집중도를 분석하는 연구용 서비스를 개발하였습니다. 2024년 춘계 산업공학회의 포스터 세션에 등록되기도 하였습니다."
-                techSkills={[
-                  "React",
-                  "TypeScript",
-                  "Tailwind CSS",
-                  "WebSocket",
-                  "WebRTC",
-                  "Zustand",
-                  "...",
-                ]}
-                animeDirection="RToL"
-              >
-                <FileDownloadButton
-                  fileUrl={`${import.meta.env.VITE_API_SERVER}/files/eyeve.pdf`}
+          {/* 프로젝트 들... */}
+          {projectList.map((project) => (
+            <ContentContainer>
+              <Project isAlignReverse={project.isAlignReverse}>
+                <Project.ImageContainer
+                  image={project.image.default}
+                  smallImageUrl={project.image.small}
                 />
-              </Project.Description>
-            </Project>
-          </ContentContainer>
-          {/* 암호화폐 차트 */}
-          <ContentContainer>
-            <Project isAlignReverse={false}>
-              <Project.ImageContainer
-                image={cryptoProjectImg}
-                smallImageUrl={cryptoProjectSmallImg}
-              />
-              <Project.Description
-                projectName="암호화폐 차트 그래프"
-                projectDescription="항해 플러스 프론트엔드 1기에서 진행한 프로젝트입니다. 암호화폐 차트 그래프를 보여주는 서비스를 개발하였습니다."
-                techSkills={[
-                  "React",
-                  "TypeScript",
-                  "Tailwind CSS",
-                  "lightweight-charts",
-                  "date-fns",
-                  "Tanstack Query",
-                  "socket.io",
-                  "Jira",
-                  "...",
-                ]}
-                animeDirection="RToL"
-              ></Project.Description>
-            </Project>
-          </ContentContainer>
-          {/* 웹 기반 스터디 인증 SNS */}
-          <ContentContainer>
-            <Project isAlignReverse={true}>
-              <Project.ImageContainer
-                image={studyLogProjectImg}
-                smallImageUrl={studyLogProjectSmallImg}
-              />
-              <Project.Description
-                projectName="웹 기반 스터디 인증 SNS"
-                projectDescription="웹 서비스 설계 및 실습 수업에서 진행한 SNS 플랫폼 서비스입니다. 스터디 인증을 통해 사용자들이 서로 인증을 공유하고 소통할 수 있는 서비스를 개발하였습니다."
-                techSkills={[
-                  "React",
-                  "TypeScript",
-                  "Tailwind CSS",
-                  "date-fns",
-                  "Tanstack Query",
-                  "...",
-                ]}
-                animeDirection="RToL"
-              ></Project.Description>
-            </Project>
-          </ContentContainer>
-          {/* VSCode Extension */}
-          <ContentContainer>
-            <Project isAlignReverse={false}>
-              <Project.ImageContainer
-                image={vscodeExtensionProjectImg}
-                smallImageUrl={vscodeExtensionProjectSmallImg}
-              />
-              <Project.Description
-                projectName="StudyLog VSCode Extension"
-                projectDescription="개발자의 개발 시간을 측정해주는 VSCode Extension을 개발하였습니다."
-                techSkills={[
-                  "Next.js",
-                  "TypeScript",
-                  "Tailwind CSS",
-                  "date-fns",
-                  "Tanstack Query",
-                  "Nest.js",
-                  "MongoDB",
-                  "Docker",
-                  "AWS",
-                  "...",
-                ]}
-                animeDirection="RToL"
-              ></Project.Description>
-            </Project>
-          </ContentContainer>
-          <ContentContainer>
-            <Project isAlignReverse={false}>
-              <Project.ImageContainer
-                image={portfolioProjectImg}
-                smallImageUrl={portfolioProjectSmallImg}
-              />
-              <Project.Description
-                projectName="포트폴리오 사이트"
-                projectDescription="제가 개발한 프로젝트들을 소개하는 포트폴리오 사이트입니다. SEO 최적화를 위해 많은 노력을 기울였습니다."
-                techSkills={[
-                  "React",
-                  "Node.js",
-                  "TailwindCSS",
-                  "three.js",
-                  "WebGL",
-                  "MongoDB",
-                ]}
-                animeDirection="RToL"
-              ></Project.Description>
-            </Project>
-          </ContentContainer>
+                <Project.Description
+                  projectName={project.name}
+                  projectDescription={project.description}
+                  techSkills={project.techSkill}
+                  animeDirection={project.animeDirection}
+                >
+                  {project.additionalInfo &&
+                    renderAdditionalInfo(project.additionalInfo)}
+                </Project.Description>
+              </Project>
+            </ContentContainer>
+          ))}
+
           <ContentContainer>
             <h1 className="text-4xl font-bold text-white">My 8</h1>
             <p className="text-lg">What's next?</p>

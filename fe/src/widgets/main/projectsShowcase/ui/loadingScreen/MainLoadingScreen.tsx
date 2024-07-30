@@ -22,7 +22,7 @@ export const MainLoadingScreen = ({ isLoading, onStarted }) => {
       className={`z-50 absolute h-[100vh] w-[100vw] transition-all durtaion-300  ${
         // started ? "z-0 hidden" : ""
         !isLoading ? "opacity-0 -z-10 invisible" : ""
-      }`}
+      } overflow-y-hidden`}
     >
       <LoadAnimation />
       <div

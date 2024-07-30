@@ -43,7 +43,7 @@ function ProjectsShowCase() {
   return (
     <>
       <main
-        className="absolute top-0 left-0 w-full h-[100vh] scrollbar-hide"
+        className="absolute top-0 left-0 w-full h-[100dvh] scrollbar-hide"
         style={{
           scrollSnapType: "y mandatory",
           overflowY: "auto",
@@ -52,7 +52,7 @@ function ProjectsShowCase() {
       >
         <section className="flex flex-col items-center justify-center">
           <div className="fixed top-0 left-0 w-full overflow-y-auto -z-10">
-            <div className="h-[100vh]" ref={containerRef}></div>
+            <div className="h-[100dvh]" ref={containerRef}></div>
           </div>
           {/* 홈 */}
           <ContentContainer height="137.5vh">
@@ -225,7 +225,7 @@ function ProjectsShowCase() {
           </ContentContainer>
           {/* 137.5vh */}
           <ContentContainer height="137.5vh" scrollSnapAlign="end">
-            <div className="flex h-[100vh] flex-col justify-center items-center">
+            <div className="flex h-[100dvh] flex-col justify-center items-center">
               <Contact />
             </div>
           </ContentContainer>

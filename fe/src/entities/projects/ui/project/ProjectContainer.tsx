@@ -7,6 +7,7 @@ import "./ImageContainer.css";
 type Props = {
   isAlignReverse?: boolean;
 };
+// https://blog.webdevsimplified.com/2023-05/lazy-load-images/
 export default function ProjectContainer({
   isAlignReverse,
   children,
@@ -60,12 +61,12 @@ const ImageContainer = ({
   const imageStyle = device === "desktop" ? "w-full" : "w-[80vw] h-[40vh]";
   const blurredImageDivRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [, setIsLargeImgLoaded] = useState(false);
 
   useEffect(() => {
     function loaded() {
       if (blurredImageDivRef.current) {
-        setIsLoaded(true);
+        setIsLargeImgLoaded(true);
         blurredImageDivRef.current.classList.add("loaded");
       }
     }

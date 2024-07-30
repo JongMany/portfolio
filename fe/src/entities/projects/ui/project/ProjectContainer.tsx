@@ -7,6 +7,7 @@ import "./ImageContainer.css";
 type Props = {
   isAlignReverse?: boolean;
 };
+// https://blog.webdevsimplified.com/2023-05/lazy-load-images/
 export default function ProjectContainer({
   isAlignReverse,
   children,
@@ -57,15 +58,15 @@ const ImageContainer = ({
   smallImageUrl: string;
 }) => {
   const device = useDeviceSize();
-  const imageStyle = device === "desktop" ? "w-full" : "w-[80vw] h-[40vh]";
+  const imageStyle = device === "desktop" ? "w-full" : "w-[80vw] h-[34vh]";
   const blurredImageDivRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [, setIsLargeImgLoaded] = useState(false);
 
   useEffect(() => {
     function loaded() {
       if (blurredImageDivRef.current) {
-        setIsLoaded(true);
+        setIsLargeImgLoaded(true);
         blurredImageDivRef.current.classList.add("loaded");
       }
     }
@@ -121,13 +122,16 @@ const Description = ({
   const headTextFontStyle = device === "desktop" ? "text-xl" : "text-lg";
   const detailTextFontStyle = device === "desktop" ? "text-sm" : "text-xs";
 
+  const selectedTechSkills =
+    device === "desktop" ? techSkills : [...techSkills.slice(0, 3), "..."];
+
   return (
     <div
       className="flex flex-col items-start justify-center basis-[50%] backdrop-blur-sm px-4 py-2"
       ref={containerRef}
     >
-      <h1 className="flex items-center justify-center w-full mb-4 text-2xl">
-        <span className="pr-4 mr-4 border-r-2 max-w-[40%]">프로젝트 명 </span>
+      <h1 className="flex items-center justify-center w-full mb-4 text-lg">
+        <span className="pr-2 mr-4 border-r-2 max-w-[40%]">프로젝트 명 </span>
         <span className={`flex-1 text-2xl ${headTextFontStyle}`}>
           {projectName}
         </span>
@@ -141,7 +145,7 @@ const Description = ({
       <div className="mb-4">
         <p className="mb-2 font-semibold">사용한 기술 스택</p>
         <ul className={`flex flex-col ml-4 gap-y-1 ${detailTextFontStyle}`}>
-          {techSkills.map((skill, idx) => (
+          {selectedTechSkills.map((skill, idx) => (
             <li
               key={skill}
               style={{

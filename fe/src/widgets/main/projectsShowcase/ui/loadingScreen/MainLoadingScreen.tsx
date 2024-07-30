@@ -1,3 +1,4 @@
+import { useDeviceSize } from "@/shared/libs";
 import LoadAnimation from "@/shared/ui/loadingScreen/LoadAnimation";
 import { useLoadMainPage } from "@/widgets/main/projectsShowcase/libs/useLoadMainPage";
 import NProgress from "nprogress";
@@ -12,6 +13,8 @@ NProgress.configure({
 
 export const MainLoadingScreen = ({ isLoading, onStarted }) => {
   const { isButtonDisabled } = useLoadMainPage();
+  const device = useDeviceSize();
+  const buttonPosition = device === "desktop" ? "bottom-10" : "bottom-20";
 
   return (
     //absolute z-50 h-[100vh] w-[100vw] flex justify-center items-center
@@ -19,10 +22,12 @@ export const MainLoadingScreen = ({ isLoading, onStarted }) => {
       className={`z-50 absolute h-[100vh] w-[100vw] transition-all durtaion-300  ${
         // started ? "z-0 hidden" : ""
         !isLoading ? "opacity-0 -z-10 invisible" : ""
-      }`}
+      } overflow-y-hidden`}
     >
       <LoadAnimation />
-      <div className="absolute z-10 bottom-10 left-[50%] -translate-x-[50%]">
+      <div
+        className={`absolute z-10 ${buttonPosition} left-[50%] -translate-x-[50%]`}
+      >
         <button
           // className="loadingScreen__button"
           className={`${isButtonDisabled ? "text-gray-400" : "text-white"}`}

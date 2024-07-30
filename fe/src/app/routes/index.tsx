@@ -4,6 +4,9 @@ import ErrorLayout from "../layout/ErrorLayout";
 import { MainLayout } from "@/app/layout/MainLayout";
 import MainPage from "@/pages/main/index";
 const NotFoundPage = lazy(() => import("@/pages/not-found/index"));
+const ProjectDetailPage = lazy(
+  () => import("@/pages/project/projectName/index")
+);
 
 // const MainPage = lazy(() => import("../pages/main/MainPage"));
 
@@ -17,6 +20,14 @@ const router = createBrowserRouter([
       {
         path: "main",
         element: <Suspense fallback={null}>{/* <MainPage /> */}</Suspense>,
+      },
+      {
+        path: "project/:projectName",
+        element: (
+          <Suspense fallback={null}>
+            <ProjectDetailPage />
+          </Suspense>
+        ),
       },
       {
         path: "*",

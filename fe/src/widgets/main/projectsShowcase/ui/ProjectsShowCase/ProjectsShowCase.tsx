@@ -55,7 +55,7 @@ function ProjectsShowCase() {
             <div className="h-[100dvh]" ref={containerRef}></div>
           </div>
           {/* 홈 */}
-          <ContentContainer height="137.5vh">
+          <ContentContainer height="137.5dvh">
             <Introduction />
           </ContentContainer>
           {/* 경력 */}
@@ -64,7 +64,7 @@ function ProjectsShowCase() {
           </ContentContainer>
           {/* 프로젝트 들... */}
           {projectList.map((project) => (
-            <ContentContainer>
+            <ContentContainer key={project.name}>
               <Project isAlignReverse={project.isAlignReverse}>
                 <Project.ImageContainer
                   image={project.image.default}
@@ -84,23 +84,23 @@ function ProjectsShowCase() {
           ))}
 
           <ContentContainer>
-            <h1 className="text-4xl font-bold text-white">My 8</h1>
-            <p className="text-lg">What's next?</p>
+            <h1 className="text-4xl font-bold text-white">What's next?</h1>
+            <p className="text-lg">To be continued...</p>
           </ContentContainer>
           <ContentContainer>
-            <h1 className="text-4xl font-bold text-white">My 9</h1>
-            <p className="text-lg">What's next?</p>
+            <h1 className="text-4xl font-bold text-white">What's next?</h1>
+            <p className="text-lg">To be continued...</p>
           </ContentContainer>
           <ContentContainer>
-            <h1 className="text-4xl font-bold text-white">My 10</h1>
-            <p className="text-lg">What's next?</p>
+            <h1 className="text-4xl font-bold text-white">What's next?</h1>
+            <p className="text-lg">To be continued...</p>
           </ContentContainer>
           <ContentContainer>
-            <h1 className="text-4xl font-bold text-white">My 11</h1>
-            <p className="text-lg">What's next?</p>
+            <h1 className="text-4xl font-bold text-white">What's next?</h1>
+            <p className="text-lg">To be continued...</p>
           </ContentContainer>
           {/* 137.5vh */}
-          <ContentContainer height="137.5vh" scrollSnapAlign="end">
+          <ContentContainer height="137.5dvh" scrollSnapAlign="end">
             <div className="flex h-[100dvh] flex-col justify-center items-center">
               <Contact />
             </div>

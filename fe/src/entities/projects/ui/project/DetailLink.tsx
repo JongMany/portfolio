@@ -7,11 +7,32 @@ type Props = {
 };
 export const DetailLink = ({ projectName }: Props) => {
   const device = useDeviceSize();
-  const { closeModal, openModal } = useModal(() => {
-    return (
-      <ProjectDetailModal closeModal={closeModal} projectName={projectName} />
-    );
-  });
+  const { closeModal, openModal } = useModal(
+    () => {
+      return (
+        <ProjectDetailModal closeModal={closeModal} projectName={projectName} />
+      );
+    },
+    {
+      onOpen: () => {
+        const container = document.querySelector(
+          '[data-name="project-showcase"]'
+        );
+        if (container) {
+          (container as HTMLElement).style.overflow = "hidden";
+        }
+      },
+      onClose: () => {
+        const container = document.querySelector(
+          '[data-name="project-showcase"]'
+        );
+        if (container) {
+          // scroll-snap 을 위해 auto로 변경
+          (container as HTMLElement).style.overflow = "auto";
+        }
+      },
+    }
+  );
   // PC 환경이 아닌 경우는 URL로 이동
   if (device !== "desktop") {
     const encodedProjectName = encodeURIComponent(projectName);

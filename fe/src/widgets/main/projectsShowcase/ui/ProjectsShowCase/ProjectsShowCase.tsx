@@ -22,7 +22,7 @@ function renderAdditionalInfo(additionalInfo: AdditionalInfo) {
   }
 }
 
-function ProjectsShowCase() {
+function ProjectsShowcase() {
   const ref = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -41,6 +41,7 @@ function ProjectsShowCase() {
   return (
     <>
       <main
+        data-name="project-showcase"
         className="absolute top-0 left-0 w-full h-[100dvh] scrollbar-hide"
         style={{
           scrollSnapType: "y mandatory",
@@ -115,4 +116,4 @@ function ProjectsShowCase() {
   );
 }
 
-export const ProjectsShowCaseWithLoading = withLoading(ProjectsShowCase);
+export const ProjectsShowCaseWithLoading = withLoading(ProjectsShowcase);

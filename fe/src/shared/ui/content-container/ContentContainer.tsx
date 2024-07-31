@@ -3,10 +3,12 @@ import type { PropsWithChildren } from "react";
 type Props = {
   height?: string;
   scrollSnapAlign?: "start" | "center" | "end";
+  ExtraContent?: JSX.Element;
 };
 
 export default function ContentContainer({
   children,
+  ExtraContent,
   height = "100vh",
   scrollSnapAlign = "start",
 }: PropsWithChildren<Props>) {
@@ -23,6 +25,7 @@ export default function ContentContainer({
       className={`${style}`}
     >
       {children}
+      {ExtraContent}
     </section>
   );
 }

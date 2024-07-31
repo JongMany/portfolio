@@ -16,11 +16,11 @@ export default function ProjectContainer({
 }: PropsWithChildren<Props>) {
   const device = useDeviceSize();
 
-  const rowAlign = device === "desktop" ? "row" : "col";
-  const alignStyle = getAlignStyle(rowAlign, isAlignReverse);
-
   const containerRef = useRef<HTMLElement>(null);
   const isInView = useInView(containerRef, {});
+
+  const rowAlign = device === "desktop" ? "row" : "col";
+  const alignStyle = getAlignStyle(rowAlign, isAlignReverse);
 
   return (
     <motion.article

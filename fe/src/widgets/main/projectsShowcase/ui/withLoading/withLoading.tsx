@@ -11,6 +11,7 @@ export function withLoading<P extends object>(
       setIsLoading(false);
     };
 
+    // TODO: Loading은 전체 한번만 진행되도록..!
     return (
       <>
         {!isLoading && <WrappedComponent {...props} />}

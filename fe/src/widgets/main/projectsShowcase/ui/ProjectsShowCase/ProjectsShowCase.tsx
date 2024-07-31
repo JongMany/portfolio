@@ -10,10 +10,8 @@ import Introduction from "@/entities/introduction/index";
 import { ProjectContainer as Project } from "@/entities/projects/index";
 
 import { withLoading } from "@/widgets/main/projectsShowcase/ui/withLoading/withLoading";
-import {
-  type AdditionalInfo,
-  projectList,
-} from "@/widgets/main/projectsShowcase/constants/projectList";
+import { projectOutlineList } from "@/shared/constants/index";
+import { AdditionalInfo } from "@/shared/model";
 
 function renderAdditionalInfo(additionalInfo: AdditionalInfo) {
   switch (additionalInfo.type) {
@@ -63,8 +61,14 @@ function ProjectsShowCase() {
             <MyCareer />
           </ContentContainer>
           {/* 프로젝트 들... */}
-          {projectList.map((project) => (
-            <ContentContainer key={project.name}>
+          {projectOutlineList.map((project) => (
+            <ContentContainer
+              key={project.name}
+              ExtraContent={
+                project.additionalInfo &&
+                renderAdditionalInfo(project.additionalInfo)
+              }
+            >
               <Project isAlignReverse={project.isAlignReverse}>
                 <Project.ImageContainer
                   image={project.image.default}
@@ -75,10 +79,7 @@ function ProjectsShowCase() {
                   projectDescription={project.description}
                   techSkills={project.techSkill}
                   animeDirection={project.animeDirection}
-                >
-                  {project.additionalInfo &&
-                    renderAdditionalInfo(project.additionalInfo)}
-                </Project.Description>
+                ></Project.Description>
               </Project>
             </ContentContainer>
           ))}

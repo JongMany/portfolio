@@ -181,6 +181,7 @@ export class StarScene {
     // this.myStars.forEach((star) => {
     //   star.animate();
     // });
+
     this.raycaster.setFromCamera(this.pointer, this.camera!);
     const intersectItem = this.raycaster
       .intersectObjects(this.scene.children)
@@ -213,16 +214,6 @@ export class StarScene {
         selectStar.star.geometry.attributes.color.needsUpdate = true;
       }
     }
-    //
-
-    // for (const object of intersects) {
-    //   const colors = (object.object as Points).geometry.attributes.color
-    //     .array as Float32Array;
-    //   colors[0] = 1;
-    //   colors[1] = 1;
-    //   colors[2] = 0;
-    //   (object.object as Points).geometry.attributes.color.needsUpdate = true;
-    // }
 
     this.renderer.render(this.scene, this.camera!);
   }

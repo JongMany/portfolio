@@ -1,4 +1,5 @@
 import MainHeader from "@/shared/ui/header/MainHeader";
+import ModalProvider from "@/shared/ui/provider/ModalProvider";
 import { Outlet, useLocation } from "react-router-dom";
 
 export function MainLayout() {
@@ -7,11 +8,11 @@ export function MainLayout() {
   const outletStyle = location.pathname !== "/" ? "pt-[8dvh]" : "";
 
   return (
-    <>
+    <ModalProvider>
       <MainHeader />
       <div className={outletStyle}>
         <Outlet />
       </div>
-    </>
+    </ModalProvider>
   );
 }

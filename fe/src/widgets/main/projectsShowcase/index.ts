@@ -1,1 +1,1 @@
-export { ProjectsShowCaseWithLoading } from "./ui/ProjectsShowCase/ProjectsShowCase";
+export { ProjectsShowCaseWithLoading } from "./ui/ProjectsShowcase/ProjectsShowcase";

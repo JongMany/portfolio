@@ -20,7 +20,7 @@ export function useLoadMainPage() {
   useEffect(() => {
     NProgress.start();
     import(
-      "@/widgets/main/projectsShowcase/ui/ProjectsShowCase/ProjectsShowCase.tsx"
+      "@/widgets/main/projectsShowcase/ui/ProjectsShowcase/ProjectsShowcase"
     )
       .then((module) => {
         // console.log(module);

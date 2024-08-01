@@ -1,21 +1,49 @@
-import studyLogProjectImg from "@/shared/assets/images/study-log.png";
-import studyLogProjectSmallImg from "@/shared/assets/images/study-log-small.png";
-import readyToWorkProjectImg from "@/shared/assets/images/ready_to_work.png";
-import readyToWorkProjectSmallImg from "@/shared/assets/images/ready_to_work-small.png";
-import cryptoProjectImg from "@/shared/assets/images/crypto.png";
-import cryptoProjectSmallImg from "@/shared/assets/images/crypto-small.png";
-import eyeveProjectImg from "@/shared/assets/images/eyeve.png";
-import eyeveProjectSmallImg from "@/shared/assets/images/eyeve-small.png";
-import vscodeExtensionProjectImg from "@/shared/assets/images/vscode-extension.png";
-import vscodeExtensionProjectSmallImg from "@/shared/assets/images/vscode-extension-small.png";
-import portfolioProjectImg from "@/shared/assets/images/portfolio.png";
-import portfolioProjectSmallImg from "@/shared/assets/images/portfolio-small.png";
-import type { Project, ProjectStyle } from "@/shared/model";
+import readyToWorkProjectMediumImg from "@/shared/assets/img_medium/ready_to_work.png";
+import readyToWorkProjectSmallImg from "@/shared/assets/img_small/ready_to_work.png";
+import readyToWorkProjectLargeImg from "@/shared/assets/img_large/ready_to_work.png";
+import readyToWorkProjectLoadImg from "@/shared/assets/images/ready_to_work-small.png";
+import readyToWorkProjectOriginImg from "@/shared/assets/images/ready_to_work.png";
 
-const readyToWork: Project & ProjectStyle = {
+import studyLogProjectMediumImg from "@/shared/assets/img_medium/study-log.png";
+import studyLogProjectSmallImg from "@/shared/assets/img_small/study-log.png";
+import studyLogProjectLargeImg from "@/shared/assets/img_large/study-log.png";
+import studyLogProjectLoadImg from "@/shared/assets/images/study-log-small.png";
+import studyLogProjectOriginImg from "@/shared/assets/images/study-log.png";
+
+import cryptoProjectMediumImg from "@/shared/assets/img_medium/crypto.png";
+import cryptoProjectSmallImg from "@/shared/assets/img_small/crypto.png";
+import cryptoProjectLargeImg from "@/shared/assets/img_large/crypto.png";
+import cryptoProjectLoadImg from "@/shared/assets/images/crypto-small.png";
+import cryptoProjectOriginImg from "@/shared/assets/images/crypto.png";
+
+import eyeveProjectMediumImg from "@/shared/assets/img_medium/eyeve.png";
+import eyeveProjectSmallImg from "@/shared/assets/img_small/eyeve.png";
+import eyeveProjectLargeImg from "@/shared/assets/img_large/eyeve.png";
+import eyeveProjectLoadImg from "@/shared/assets/images/eyeve-small.png";
+import eyeveProjectOriginImg from "@/shared/assets/images/eyeve.png";
+
+import vscodeExtensionProjectMediumImg from "@/shared/assets/img_medium/vscode-extension.png";
+import vscodeExtensionProjectSmallImg from "@/shared/assets/img_small/vscode-extension.png";
+import vscodeExtensionProjectLargeImg from "@/shared/assets/img_large/vscode-extension.png";
+import vscodeExtensionProjectLoadImg from "@/shared/assets/images/vscode-extension-small.png";
+import vscodeExtensionProjectOriginImg from "@/shared/assets/images/vscode-extension.png";
+
+import portfolioProjectMediumImg from "@/shared/assets/img_medium/portfolio.png";
+import portfolioProjectSmallImg from "@/shared/assets/img_small/portfolio.png";
+import portfolioProjectLargeImg from "@/shared/assets/img_large/portfolio.png";
+import portfolioProjectLoadImg from "@/shared/assets/images/portfolio-small.png";
+import portfolioProjectOriginImg from "@/shared/assets/images/portfolio.png";
+
+import type { ProjectOutline, ProjectStyle } from "@/shared/model";
+
+const readyToWork: ProjectOutline & ProjectStyle = {
   image: {
-    default: readyToWorkProjectImg,
-    small: readyToWorkProjectSmallImg,
+    // default: readyToWorkProjectImg,
+    smallImageUrl: readyToWorkProjectSmallImg,
+    mediumImageUrl: readyToWorkProjectMediumImg,
+    largeImageUrl: readyToWorkProjectLargeImg,
+    loadImageUrl: readyToWorkProjectLoadImg,
+    originImageUrl: readyToWorkProjectOriginImg,
   },
   name: "Ready To Work",
   description:
@@ -34,10 +62,13 @@ const readyToWork: Project & ProjectStyle = {
   animeDirection: "LToR",
 };
 
-const eyeve: Project & ProjectStyle = {
+const eyeve: ProjectOutline & ProjectStyle = {
   image: {
-    default: eyeveProjectImg,
-    small: eyeveProjectSmallImg,
+    smallImageUrl: eyeveProjectSmallImg,
+    mediumImageUrl: eyeveProjectMediumImg,
+    largeImageUrl: eyeveProjectLargeImg,
+    loadImageUrl: eyeveProjectLoadImg,
+    originImageUrl: eyeveProjectOriginImg,
   },
   name: "Eyeve",
   description:
@@ -59,10 +90,13 @@ const eyeve: Project & ProjectStyle = {
   },
 };
 
-const cryptoChart: Project & ProjectStyle = {
+const cryptoChart: ProjectOutline & ProjectStyle = {
   image: {
-    default: cryptoProjectImg,
-    small: cryptoProjectSmallImg,
+    smallImageUrl: cryptoProjectSmallImg,
+    mediumImageUrl: cryptoProjectMediumImg,
+    largeImageUrl: cryptoProjectLargeImg,
+    loadImageUrl: cryptoProjectLoadImg,
+    originImageUrl: cryptoProjectOriginImg,
   },
   name: "암호화폐 차트 그래프",
   description:
@@ -82,10 +116,13 @@ const cryptoChart: Project & ProjectStyle = {
   animeDirection: "RToL",
 };
 
-const studyLog: Project & ProjectStyle = {
+const studyLog: ProjectOutline & ProjectStyle = {
   image: {
-    default: studyLogProjectImg,
-    small: studyLogProjectSmallImg,
+    smallImageUrl: studyLogProjectSmallImg,
+    mediumImageUrl: studyLogProjectMediumImg,
+    largeImageUrl: studyLogProjectLargeImg,
+    loadImageUrl: studyLogProjectLoadImg,
+    originImageUrl: studyLogProjectOriginImg,
   },
   name: "웹 기반 스터디 인증 SNS",
   description:
@@ -102,10 +139,13 @@ const studyLog: Project & ProjectStyle = {
   animeDirection: "LToR",
 };
 
-const vscodeExtension: Project & ProjectStyle = {
+const vscodeExtension: ProjectOutline & ProjectStyle = {
   image: {
-    default: vscodeExtensionProjectImg,
-    small: vscodeExtensionProjectSmallImg,
+    smallImageUrl: vscodeExtensionProjectSmallImg,
+    mediumImageUrl: vscodeExtensionProjectMediumImg,
+    largeImageUrl: vscodeExtensionProjectLargeImg,
+    loadImageUrl: vscodeExtensionProjectLoadImg,
+    originImageUrl: vscodeExtensionProjectOriginImg,
   },
   name: "StudyLog VSCode Extension",
   description:
@@ -126,10 +166,13 @@ const vscodeExtension: Project & ProjectStyle = {
   animeDirection: "RToL",
 };
 
-const portfolio: Project & ProjectStyle = {
+const portfolio: ProjectOutline & ProjectStyle = {
   image: {
-    default: portfolioProjectImg,
-    small: portfolioProjectSmallImg,
+    smallImageUrl: portfolioProjectSmallImg,
+    mediumImageUrl: portfolioProjectMediumImg,
+    largeImageUrl: portfolioProjectLargeImg,
+    loadImageUrl: portfolioProjectLoadImg,
+    originImageUrl: portfolioProjectOriginImg,
   },
   name: "포트폴리오 사이트",
   description:
@@ -147,7 +190,7 @@ const portfolio: Project & ProjectStyle = {
   animeDirection: "LToR",
 };
 
-export const projectOutlineList: (Project & ProjectStyle)[] = [
+export const projectOutlineList: (ProjectOutline & ProjectStyle)[] = [
   readyToWork,
   eyeve,
   cryptoChart,

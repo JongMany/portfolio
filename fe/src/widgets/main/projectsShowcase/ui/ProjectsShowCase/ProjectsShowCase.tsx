@@ -72,8 +72,8 @@ function ProjectsShowcase() {
             >
               <Project isAlignReverse={project.isAlignReverse}>
                 <Project.ImageContainer
-                  image={project.image.default}
-                  smallImageUrl={project.image.small}
+                  alt={project.name}
+                  imageSet={project.image}
                 />
                 <Project.Description
                   projectName={project.name}

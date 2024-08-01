@@ -13,9 +13,9 @@ export default function Introdcution() {
   });
 
   return (
-    <div className="flex flex-col px-2 w-[70vw] items-center justify-center min-h-[80vh]">
-      <h1 className="py-6 text-4xl">방구석 코딩쟁이, 이종민입니다.</h1>
-      <div className="flex flex-col items-start gap-y-3">
+    <div className="flex flex-col px-2 w-[70vw] items-center justify-center min-h-[80vh] relative -top-[10vh]">
+      <h1 className="py-6 mb-10 text-4xl">방구석 코딩쟁이, 이종민입니다.</h1>
+      <div className="flex flex-col items-start gap-y-3 min-h-[30vh]">
         {typingText.map((text) => (
           <p key={text} className="text-lg ">
             {text}

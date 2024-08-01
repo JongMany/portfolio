@@ -11,7 +11,7 @@ export function Modal({ children }: PropsWithChildren<Props>) {
         top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
-        border: "4px solid #000",
+        border: "4px solid #fff",
       }}
     >
       {children}
